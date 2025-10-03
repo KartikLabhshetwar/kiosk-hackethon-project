@@ -116,10 +116,11 @@ def show_celebrity_page(recommender, celebrity_engine):
             display_name = celeb.replace('_', ' ').title()
             if st.button(f"✨ {display_name}", key=f"celeb_{idx}"):
                 st.session_state.selected_celebrity = celeb
+                st.session_state.celebrity_step = 1  # Move to next step
                 st.rerun()
     
-    # Show celebrity details and recommendations
-    if hasattr(st.session_state, 'selected_celebrity'):
+    # Show celebrity details and style options
+    if hasattr(st.session_state, 'selected_celebrity') and st.session_state.celebrity_step == 1:
         celeb = st.session_state.selected_celebrity
         celeb_data = celebrity_engine.get_celebrity_recommendations(celeb)
         
@@ -138,8 +139,60 @@ def show_celebrity_page(recommender, celebrity_engine):
             st.write(f"**Keywords:** {', '.join(celeb_data['keywords'][:5])}")
             st.write(f"**Preferred Categories:** {', '.join(celeb_data['preferred_categories'])}")
         
-        # Get recommendations
-        st.subheader("🎁 Recommended Jewelry")
+        st.markdown("---")
+        st.subheader("🎯 What would you like to explore?")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            if st.button("💎 Browse by Category", key="celeb_category"):
+                st.session_state.celebrity_step = 2
+                st.session_state.celebrity_action = "category"
+                st.rerun()
+        
+        with col2:
+            if st.button("🎨 Explore by Vibe", key="celeb_vibe"):
+                st.session_state.celebrity_step = 2
+                st.session_state.celebrity_action = "vibe"
+                st.rerun()
+        
+        with col3:
+            if st.button("🎉 Choose Occasion", key="celeb_occasion"):
+                st.session_state.celebrity_step = 2
+                st.session_state.celebrity_action = "occasion"
+                st.rerun()
+        
+        # Option to get direct recommendations
+        st.markdown("---")
+        if st.button("🚀 Get Direct Recommendations", key="celeb_direct"):
+            st.session_state.celebrity_step = 3
+            st.rerun()
+        
+        if st.button("🔄 Choose Different Celebrity", key="celeb_back"):
+            delattr(st.session_state, 'selected_celebrity')
+            if hasattr(st.session_state, 'celebrity_step'):
+                delattr(st.session_state, 'celebrity_step')
+            st.rerun()
+    
+    # Show specific options based on user choice
+    elif hasattr(st.session_state, 'selected_celebrity') and st.session_state.celebrity_step == 2:
+        celeb = st.session_state.selected_celebrity
+        action = st.session_state.celebrity_action
+        
+        st.subheader(f"✨ {celeb.replace('_', ' ').title()}'s Style - {action.title()}")
+        
+        if action == "category":
+            show_celebrity_category_options(recommender, celebrity_engine, celeb)
+        elif action == "vibe":
+            show_celebrity_vibe_options(recommender, celebrity_engine, celeb)
+        elif action == "occasion":
+            show_celebrity_occasion_options(recommender, celebrity_engine, celeb)
+    
+    # Show direct recommendations
+    elif hasattr(st.session_state, 'selected_celebrity') and st.session_state.celebrity_step == 3:
+        celeb = st.session_state.selected_celebrity
+        st.subheader(f"🎁 {celeb.replace('_', ' ').title()}'s Recommended Jewelry")
+        
         results = recommender.search_by_celebrity(celeb, top_k=6)
         
         if results:
@@ -147,9 +200,103 @@ def show_celebrity_page(recommender, celebrity_engine):
         else:
             st.warning("No jewelry found matching this celebrity's style.")
         
-        if st.button("🔄 Choose Different Celebrity"):
-            delattr(st.session_state, 'selected_celebrity')
+        if st.button("🔄 Back to Celebrity Options", key="celeb_back_options"):
+            st.session_state.celebrity_step = 1
             st.rerun()
+    
+    # Show results if available (step 4)
+    elif hasattr(st.session_state, 'selected_celebrity') and st.session_state.celebrity_step == 4:
+        celeb = st.session_state.selected_celebrity
+        st.subheader(f"🎁 {celeb.replace('_', ' ').title()}'s Inspired Recommendations")
+        
+        if hasattr(st.session_state, 'celebrity_results'):
+            display_results(st.session_state.celebrity_results, recommender)
+        else:
+            st.warning("No results found. Please try different options.")
+        
+        if st.button("🔄 Try Different Options", key="celeb_try_again"):
+            st.session_state.celebrity_step = 1
+            if hasattr(st.session_state, 'celebrity_results'):
+                delattr(st.session_state, 'celebrity_results')
+            st.rerun()
+
+def show_celebrity_category_options(recommender, celebrity_engine, celeb):
+    """Show category options for celebrity style"""
+    celeb_data = celebrity_engine.get_celebrity_recommendations(celeb)
+    categories = recommender.get_categories()
+    
+    st.write("**Choose a category that matches the celebrity's style:**")
+    
+    cols = st.columns(3)
+    for idx, category in enumerate(categories):
+        with cols[idx % 3]:
+            if st.button(category, key=f"celeb_cat_{idx}"):
+                # Search for celebrity + category
+                query = f"{celeb_data['keywords'][0]} {category}"
+                results = recommender.search(
+                    query=query,
+                    category=category,
+                    min_price=celeb_data['price_range']['min'],
+                    max_price=celeb_data['price_range']['max'],
+                    top_k=6
+                )
+                st.session_state.celebrity_results = results
+                st.session_state.celebrity_step = 4
+                st.rerun()
+    
+    if st.button("🔄 Back to Celebrity Style", key="celeb_back_style"):
+        st.session_state.celebrity_step = 1
+        st.rerun()
+
+def show_celebrity_vibe_options(recommender, celebrity_engine, celeb):
+    """Show vibe options for celebrity style"""
+    celeb_data = celebrity_engine.get_celebrity_recommendations(celeb)
+    vibes = celeb_data['vibes']  # Use celebrity's vibes
+    
+    st.write("**Choose a vibe that matches the celebrity's style:**")
+    
+    cols = st.columns(3)
+    for idx, vibe in enumerate(vibes):
+        with cols[idx % 3]:
+            if st.button(vibe.title(), key=f"celeb_vibe_{idx}"):
+                # Search for celebrity + vibe
+                query = f"{celeb_data['keywords'][0]} {vibe}"
+                results = recommender.search_by_vibe(vibe, top_k=6)
+                st.session_state.celebrity_results = results
+                st.session_state.celebrity_step = 4
+                st.rerun()
+    
+    if st.button("🔄 Back to Celebrity Style", key="celeb_back_style"):
+        st.session_state.celebrity_step = 1
+        st.rerun()
+
+def show_celebrity_occasion_options(recommender, celebrity_engine, celeb):
+    """Show occasion options for celebrity style"""
+    celeb_data = celebrity_engine.get_celebrity_recommendations(celeb)
+    occasions = celeb_data['occasions']  # Use celebrity's occasions
+    
+    st.write("**Choose an occasion that matches the celebrity's style:**")
+    
+    cols = st.columns(3)
+    for idx, occasion in enumerate(occasions):
+        with cols[idx % 3]:
+            if st.button(occasion.title(), key=f"celeb_occ_{idx}"):
+                # Search for celebrity + occasion
+                query = f"{celeb_data['keywords'][0]} {occasion}"
+                results = recommender.search(
+                    query=query,
+                    min_price=celeb_data['price_range']['min'],
+                    max_price=celeb_data['price_range']['max'],
+                    top_k=6
+                )
+                st.session_state.celebrity_results = results
+                st.session_state.celebrity_step = 4
+                st.rerun()
+    
+    if st.button("🔄 Back to Celebrity Style", key="celeb_back_style"):
+        st.session_state.celebrity_step = 1
+        st.rerun()
+    
 
 def show_vibe_page(recommender, vibe_classifier):
     """Vibe Explorer Page"""
