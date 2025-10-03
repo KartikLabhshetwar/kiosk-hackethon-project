@@ -7,7 +7,10 @@
     "price": 138477.07,
     "images": null,
     "description": "Halo Spiral Diamond Earrings | Earring",
-    "product_url": "https://evoljewels.com/products/halo-spiral-diamond-earrings"
+    "product_url": "https://evoljewels.com/products/halo-spiral-diamond-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 1,
@@ -17,7 +20,10 @@
     "price": 82747.55,
     "images": null,
     "description": "Petal Lace Diamond Earrings | Floral Collection | Earring",
-    "product_url": "https://evoljewels.com/products/petal-lace-diamond-earrings"
+    "product_url": "https://evoljewels.com/products/floral-collection/petal-lace-diamond-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 2,
@@ -27,7 +33,10 @@
     "price": 73181.12,
     "images": null,
     "description": "Aria Stacked Diamond Earrings | Tribal Collection | Earring",
-    "product_url": "https://evoljewels.com/products/aria-stacked-diamond-earrings"
+    "product_url": "https://evoljewels.com/products/tribal-collection/aria-stacked-diamond-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 3,
@@ -37,7 +46,10 @@
     "price": 123940.92,
     "images": null,
     "description": "Eclipse Enamel Diamond Earrings | Earring",
-    "product_url": "https://evoljewels.com/products/eclipse-enamel-diamond-earrings"
+    "product_url": "https://evoljewels.com/products/eclipse-enamel-diamond-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 4,
@@ -47,7 +59,10 @@
     "price": 210731.54,
     "images": null,
     "description": "Blossom Vine Diamond Earrings | Earring",
-    "product_url": "https://evoljewels.com/products/blossom-vine-diamond-earrings"
+    "product_url": "https://evoljewels.com/products/blossom-vine-diamond-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 5,
@@ -57,7 +72,10 @@
     "price": 455910.5,
     "images": null,
     "description": "Ethereal Petal Drop Earrings | Earring",
-    "product_url": "https://evoljewels.com/products/ethereal-petal-drop-earrings"
+    "product_url": "https://evoljewels.com/products/ethereal-petal-drop-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 6,
@@ -67,7 +85,10 @@
     "price": 226185.92,
     "images": null,
     "description": "Cascade Diamond Chandelier Earrings | Earring",
-    "product_url": "https://evoljewels.com/products/cascade-diamond-chandelier-earrings"
+    "product_url": "https://evoljewels.com/products/cascade-diamond-chandelier-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 7,
@@ -77,7 +98,10 @@
     "price": 204770.74,
     "images": null,
     "description": "Ethereal Cascade Diamond Earrings | Earring",
-    "product_url": "https://evoljewels.com/products/ethereal-cascade-diamond-earrings"
+    "product_url": "https://evoljewels.com/products/ethereal-cascade-diamond-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 8,
@@ -87,7 +111,10 @@
     "price": 78252.43,
     "images": null,
     "description": "Swirl Drop Diamond Earrings | Cosmic Collection | Earring",
-    "product_url": "https://evoljewels.com/products/swirl-drop-diamond-earrings"
+    "product_url": "https://evoljewels.com/products/cosmic-collection/swirl-drop-diamond-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 9,
@@ -97,7 +124,10 @@
     "price": 106526.38,
     "images": null,
     "description": "Radiant Spiral Diamond Earrings | Sun | Earring",
-    "product_url": "https://evoljewels.com/products/radiant-spiral-diamond-earrings"
+    "product_url": "https://evoljewels.com/products/sun/radiant-spiral-diamond-earrings",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 10,
@@ -107,7 +137,10 @@
     "price": 60366.21,
     "images": null,
     "description": "Seraphine Leaf Diamond Ring | Floral Collection | Ring",
-    "product_url": "https://evoljewels.com/products/seraphine-leaf-diamond-ring"
+    "product_url": "https://evoljewels.com/products/floral-collection/seraphine-leaf-diamond-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 11,
@@ -117,7 +150,14 @@
     "price": 48842.15,
     "images": null,
     "description": "Aurora Crown Diamond Ring | Tribal Collection | Ring",
-    "product_url": "https://evoljewels.com/products/aurora-crown-diamond-ring"
+    "product_url": "https://evoljewels.com/products/tribal-collection/aurora-crown-diamond-ring",
+    "vibes": [
+      "royal"
+    ],
+    "primary_vibe": "royal",
+    "vibe_scores": {
+      "royal": 0.11764705882352941
+    }
   },
   {
     "id": 12,
@@ -127,7 +167,10 @@
     "price": 161697.54,
     "images": null,
     "description": "Radiant Trinity Diamond Ring | Ring",
-    "product_url": "https://evoljewels.com/products/radiant-trinity-diamond-ring"
+    "product_url": "https://evoljewels.com/products/radiant-trinity-diamond-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 13,
@@ -137,7 +180,10 @@
     "price": 62307.63,
     "images": null,
     "description": "Phenomena Stackable Diamond Ring | Ring",
-    "product_url": "https://evoljewels.com/products/phenomena-stackable-diamond-ring"
+    "product_url": "https://evoljewels.com/products/phenomena-stackable-diamond-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 14,
@@ -147,7 +193,10 @@
     "price": 132950.13,
     "images": null,
     "description": "Lustrous Split Emerald Ring | Ring",
-    "product_url": "https://evoljewels.com/products/lustrous-split-emerald-ring"
+    "product_url": "https://evoljewels.com/products/lustrous-split-emerald-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 15,
@@ -157,7 +206,10 @@
     "price": 307245.76,
     "images": null,
     "description": "Alchemy Diamond Ring | Ring",
-    "product_url": "https://evoljewels.com/products/alchemy-diamond-ring"
+    "product_url": "https://evoljewels.com/products/alchemy-diamond-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 16,
@@ -167,7 +219,10 @@
     "price": 189864.9,
     "images": null,
     "description": "Eve Diamond Ring | Ring",
-    "product_url": "https://evoljewels.com/products/eve-diamond-ring"
+    "product_url": "https://evoljewels.com/products/eve-diamond-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 17,
@@ -177,7 +232,10 @@
     "price": 207369.29,
     "images": null,
     "description": "Ethereal Pear Diamond Ring | Ring",
-    "product_url": "https://evoljewels.com/products/ethereal-pear-diamond-ring"
+    "product_url": "https://evoljewels.com/products/ethereal-pear-diamond-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 18,
@@ -187,7 +245,10 @@
     "price": 136083.82,
     "images": null,
     "description": "Halo Glow Diamond Ring | Ring",
-    "product_url": "https://evoljewels.com/products/halo-glow-diamond-ring"
+    "product_url": "https://evoljewels.com/products/halo-glow-diamond-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 19,
@@ -197,7 +258,10 @@
     "price": 112273.24,
     "images": null,
     "description": "Infinity Round Diamond Ring | Ring",
-    "product_url": "https://evoljewels.com/products/infinity-round-diamond-ring"
+    "product_url": "https://evoljewels.com/products/infinity-round-diamond-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 20,
@@ -207,7 +271,14 @@
     "price": 94996.57,
     "images": null,
     "description": "Sculpted Pear Signet Ring | Ring",
-    "product_url": "https://evoljewels.com/products/sculpted-pear-signet-ring"
+    "product_url": "https://evoljewels.com/products/sculpted-pear-signet-ring",
+    "vibes": [
+      "artistic"
+    ],
+    "primary_vibe": "artistic",
+    "vibe_scores": {
+      "artistic": 0.12000000000000001
+    }
   },
   {
     "id": 21,
@@ -217,7 +288,10 @@
     "price": 146406.0,
     "images": null,
     "description": "Elyse Round Diamond Solitaire | Ring",
-    "product_url": "https://evoljewels.com/products/elyse-round-diamond-solitaire"
+    "product_url": "https://evoljewels.com/products/elyse-round-diamond-solitaire",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 22,
@@ -227,7 +301,10 @@
     "price": 183617.77,
     "images": null,
     "description": "Colossus Diamond Halo Ring | Ring",
-    "product_url": "https://evoljewels.com/products/colossus-diamond-halo-ring"
+    "product_url": "https://evoljewels.com/products/colossus-diamond-halo-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 23,
@@ -237,7 +314,10 @@
     "price": 263352.2,
     "images": null,
     "description": "Gracie Diamond Eternity Ring | Ring",
-    "product_url": "https://evoljewels.com/products/gracie-diamond-eternity-ring"
+    "product_url": "https://evoljewels.com/products/gracie-diamond-eternity-ring",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 24,
@@ -247,7 +327,14 @@
     "price": 112516.85,
     "images": null,
     "description": "Bold Pear Diamond Ring | Ring",
-    "product_url": "https://evoljewels.com/products/bold-pear-diamond-ring"
+    "product_url": "https://evoljewels.com/products/bold-pear-diamond-ring",
+    "vibes": [
+      "statement"
+    ],
+    "primary_vibe": "statement",
+    "vibe_scores": {
+      "statement": 0.16
+    }
   },
   {
     "id": 25,
@@ -257,7 +344,10 @@
     "price": 48196.36,
     "images": null,
     "description": "Butterfly Whimsy Diamond Pendant | Butterfly Collection | Pendant",
-    "product_url": "https://evoljewels.com/products/butterfly-whimsy-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/butterfly-collection/butterfly-whimsy-diamond-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 26,
@@ -267,7 +357,10 @@
     "price": 43684.22,
     "images": null,
     "description": "Swirl Drop Diamond Pendant | Cosmic Collection | Pendant",
-    "product_url": "https://evoljewels.com/products/swirl-drop-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/cosmic-collection/swirl-drop-diamond-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 27,
@@ -277,7 +370,10 @@
     "price": 61633.71,
     "images": null,
     "description": "Diamond Embrace Pendant | Floral Collection | Pendant",
-    "product_url": "https://evoljewels.com/products/diamond-embrace-pendant"
+    "product_url": "https://evoljewels.com/products/floral-collection/diamond-embrace-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 28,
@@ -287,7 +383,14 @@
     "price": 56855.99,
     "images": null,
     "description": "Modern Layered Diamond Pendant | Tribal Collection | Pendant",
-    "product_url": "https://evoljewels.com/products/modern-layered-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/tribal-collection/modern-layered-diamond-pendant",
+    "vibes": [
+      "modern"
+    ],
+    "primary_vibe": "modern",
+    "vibe_scores": {
+      "modern": 0.12000000000000001
+    }
   },
   {
     "id": 29,
@@ -297,7 +400,10 @@
     "price": 71835.44,
     "images": null,
     "description": "Zuri Diamond Pendant | Pendant",
-    "product_url": "https://evoljewels.com/products/zuri-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/zuri-diamond-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 30,
@@ -307,7 +413,10 @@
     "price": 39284.93,
     "images": null,
     "description": "Infinitum Diamond Pendant | Pendant",
-    "product_url": "https://evoljewels.com/products/infinitum-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/infinitum-diamond-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 31,
@@ -317,7 +426,10 @@
     "price": 176982.14,
     "images": null,
     "description": "Apollo Diamond Pendant | Pendant",
-    "product_url": "https://evoljewels.com/products/apollo-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/apollo-diamond-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 32,
@@ -327,7 +439,10 @@
     "price": 97157.72,
     "images": null,
     "description": "My Beloved Diamond Pendant | Pendant",
-    "product_url": "https://evoljewels.com/products/my-beloved-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/my-beloved-diamond-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 33,
@@ -337,7 +452,10 @@
     "price": 34476.48,
     "images": null,
     "description": "Circle Of Life Diamond Pendant | Pendant",
-    "product_url": "https://evoljewels.com/products/circle-of-life-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/circle-of-life-diamond-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 34,
@@ -347,7 +465,10 @@
     "price": 180317.52,
     "images": null,
     "description": "Helios Diamond Halo Pendant | Pendant",
-    "product_url": "https://evoljewels.com/products/helios-diamond-halo-pendant"
+    "product_url": "https://evoljewels.com/products/helios-diamond-halo-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 35,
@@ -357,7 +478,10 @@
     "price": 46131.6,
     "images": null,
     "description": "Eden Diamond Pendant | Pendant",
-    "product_url": "https://evoljewels.com/products/eden-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/eden-diamond-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 36,
@@ -367,7 +491,10 @@
     "price": 50446.46,
     "images": null,
     "description": "Davina Diamond Halo Pendant | Pendant",
-    "product_url": "https://evoljewels.com/products/davina-diamond-halo-pendant"
+    "product_url": "https://evoljewels.com/products/davina-diamond-halo-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 37,
@@ -377,7 +504,14 @@
     "price": 235460.03,
     "images": null,
     "description": "Heart Diamond Pendant | Sun | Pendant",
-    "product_url": "https://evoljewels.com/products/heart-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/sun/heart-diamond-pendant",
+    "vibes": [
+      "romantic"
+    ],
+    "primary_vibe": "romantic",
+    "vibe_scores": {
+      "romantic": 0.12000000000000001
+    }
   },
   {
     "id": 38,
@@ -387,7 +521,10 @@
     "price": 34670.55,
     "images": null,
     "description": "Valentine Diamond Pendant | Paan Collection | Pendant",
-    "product_url": "https://evoljewels.com/products/valentine-diamond-pendant"
+    "product_url": "https://evoljewels.com/products/paan-collection/valentine-diamond-pendant",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 39,
@@ -397,7 +534,14 @@
     "price": 167725.11,
     "images": null,
     "description": "Regal Crown Bangle Bracelet | Tribal Collection | Bracelet",
-    "product_url": "https://evoljewels.com/products/regal-crown-bangle-bracelet"
+    "product_url": "https://evoljewels.com/products/tribal-collection/regal-crown-bangle-bracelet",
+    "vibes": [
+      "royal"
+    ],
+    "primary_vibe": "royal",
+    "vibe_scores": {
+      "royal": 0.23529411764705882
+    }
   },
   {
     "id": 40,
@@ -407,7 +551,10 @@
     "price": 199074.41,
     "images": null,
     "description": "Ethereal Spiral Diamond Bracelet | Sun | Bracelet",
-    "product_url": "https://evoljewels.com/products/ethereal-spiral-diamond-bracelet"
+    "product_url": "https://evoljewels.com/products/sun/ethereal-spiral-diamond-bracelet",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 41,
@@ -417,7 +564,10 @@
     "price": 310678.04,
     "images": null,
     "description": "Eternal Spark Diamond Bracelet | Bracelet",
-    "product_url": "https://evoljewels.com/products/eternal-spark-diamond-bracelet"
+    "product_url": "https://evoljewels.com/products/eternal-spark-diamond-bracelet",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 42,
@@ -427,7 +577,10 @@
     "price": 259135.49,
     "images": null,
     "description": "Orion Diamond Bracelet | Bracelet",
-    "product_url": "https://evoljewels.com/products/orion-diamond-bracelet"
+    "product_url": "https://evoljewels.com/products/orion-diamond-bracelet",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 43,
@@ -437,7 +590,14 @@
     "price": 357003.21,
     "images": null,
     "description": "Poly Dazzle Diamond Tennis Bracelet | Bracelet",
-    "product_url": "https://evoljewels.com/products/poly-dazzle-diamond-tennis-bracelet"
+    "product_url": "https://evoljewels.com/products/poly-dazzle-diamond-tennis-bracelet",
+    "vibes": [
+      "glamorous"
+    ],
+    "primary_vibe": "glamorous",
+    "vibe_scores": {
+      "glamorous": 0.13333333333333333
+    }
   },
   {
     "id": 44,
@@ -447,7 +607,14 @@
     "price": 231479.56,
     "images": null,
     "description": "Twain Sparkle Cuff Bracelet | Bracelet",
-    "product_url": "https://evoljewels.com/products/twain-sparkle-cuff-bracelet"
+    "product_url": "https://evoljewels.com/products/twain-sparkle-cuff-bracelet",
+    "vibes": [
+      "glamorous"
+    ],
+    "primary_vibe": "glamorous",
+    "vibe_scores": {
+      "glamorous": 0.13333333333333333
+    }
   },
   {
     "id": 45,
@@ -457,7 +624,10 @@
     "price": 250506.97,
     "images": null,
     "description": "Trinity Diamond Bangle Bracelet | Bracelet",
-    "product_url": "https://evoljewels.com/products/trinity-diamond-bangle-bracelet"
+    "product_url": "https://evoljewels.com/products/trinity-diamond-bangle-bracelet",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 46,
@@ -467,7 +637,16 @@
     "price": 628331.61,
     "images": null,
     "description": "Classic Tennis Bracelet | Bracelet",
-    "product_url": "https://evoljewels.com/products/classic-tennis-bracelet"
+    "product_url": "https://evoljewels.com/products/classic-tennis-bracelet",
+    "vibes": [
+      "traditional",
+      "vintage"
+    ],
+    "primary_vibe": "traditional",
+    "vibe_scores": {
+      "traditional": 0.13333333333333333,
+      "vintage": 0.1125
+    }
   },
   {
     "id": 47,
@@ -477,7 +656,10 @@
     "price": 432449.71,
     "images": null,
     "description": "Sterling Diamond Bangle Bracelet | Bracelet",
-    "product_url": "https://evoljewels.com/products/sterling-diamond-bangle-bracelet"
+    "product_url": "https://evoljewels.com/products/sterling-diamond-bangle-bracelet",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 48,
@@ -487,7 +669,10 @@
     "price": 212512.85,
     "images": null,
     "description": "Frosty Drops Diamond Bracelet | Bracelet",
-    "product_url": "https://evoljewels.com/products/frosty-drops-diamond-bracelet"
+    "product_url": "https://evoljewels.com/products/frosty-drops-diamond-bracelet",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 49,
@@ -497,7 +682,10 @@
     "price": 470722.14,
     "images": null,
     "description": "Meadow Graduation Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/meadow-graduation-necklace"
+    "product_url": "https://evoljewels.com/products/meadow-graduation-necklace",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 50,
@@ -507,7 +695,10 @@
     "price": 244844.81,
     "images": null,
     "description": "Rainbow Tennis Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/rainbow-tennis-necklace"
+    "product_url": "https://evoljewels.com/products/rainbow-tennis-necklace",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 51,
@@ -517,7 +708,10 @@
     "price": 704761.82,
     "images": null,
     "description": "Celestial Cascade Diamond Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/celestial-cascade-diamond-necklace"
+    "product_url": "https://evoljewels.com/products/celestial-cascade-diamond-necklace",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 52,
@@ -527,7 +721,10 @@
     "price": 68559.56,
     "images": null,
     "description": "Lustre Five Stone Diamond Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/lustre-five-stone-diamond-necklace"
+    "product_url": "https://evoljewels.com/products/lustre-five-stone-diamond-necklace",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 53,
@@ -537,7 +734,10 @@
     "price": 1024606.3,
     "images": null,
     "description": "Ivy Diamond Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/ivy-diamond-necklace"
+    "product_url": "https://evoljewels.com/products/ivy-diamond-necklace",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 54,
@@ -547,7 +747,10 @@
     "price": 56130.27,
     "images": null,
     "description": "Periwinkle Diamond Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/periwinkle-diamond-necklace"
+    "product_url": "https://evoljewels.com/products/periwinkle-diamond-necklace",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 55,
@@ -557,7 +760,10 @@
     "price": 62608.29,
     "images": null,
     "description": "Gamut Marquise Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/gamut-marquise-necklace"
+    "product_url": "https://evoljewels.com/products/gamut-marquise-necklace",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 56,
@@ -567,7 +773,16 @@
     "price": 1265973.97,
     "images": null,
     "description": "Vector Classic Tennis Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/vector-classic-tennis-necklace"
+    "product_url": "https://evoljewels.com/products/vector-classic-tennis-necklace",
+    "vibes": [
+      "traditional",
+      "vintage"
+    ],
+    "primary_vibe": "traditional",
+    "vibe_scores": {
+      "traditional": 0.13333333333333333,
+      "vintage": 0.1125
+    }
   },
   {
     "id": 57,
@@ -577,7 +792,14 @@
     "price": 48994.68,
     "images": null,
     "description": "Elite Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/elite-necklace"
+    "product_url": "https://evoljewels.com/products/elite-necklace",
+    "vibes": [
+      "luxury"
+    ],
+    "primary_vibe": "luxury",
+    "vibe_scores": {
+      "luxury": 0.14666666666666667
+    }
   },
   {
     "id": 58,
@@ -587,7 +809,10 @@
     "price": 412208.73,
     "images": null,
     "description": "Ivy Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/ivy-necklace"
+    "product_url": "https://evoljewels.com/products/ivy-necklace",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   },
   {
     "id": 59,
@@ -597,6 +822,9 @@
     "price": 556016.68,
     "images": null,
     "description": "Peace Enchantress Charms Necklace | Necklace",
-    "product_url": "https://evoljewels.com/products/peace-enchantress-charms-necklace"
+    "product_url": "https://evoljewels.com/products/peace-enchantress-charms-necklace",
+    "vibes": [],
+    "primary_vibe": "classic",
+    "vibe_scores": {}
   }
 ]
