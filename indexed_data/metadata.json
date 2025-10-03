@@ -1,0 +1,602 @@
+[
+  {
+    "id": 0,
+    "product_name": "Halo Spiral Diamond Earrings",
+    "collection": null,
+    "category": "Earring",
+    "price": 138477.07,
+    "images": null,
+    "description": "Halo Spiral Diamond Earrings | Earring",
+    "product_url": "https://evoljewels.com/products/halo-spiral-diamond-earrings"
+  },
+  {
+    "id": 1,
+    "product_name": "Petal Lace Diamond Earrings",
+    "collection": "Floral Collection",
+    "category": "Earring",
+    "price": 82747.55,
+    "images": null,
+    "description": "Petal Lace Diamond Earrings | Floral Collection | Earring",
+    "product_url": "https://evoljewels.com/products/petal-lace-diamond-earrings"
+  },
+  {
+    "id": 2,
+    "product_name": "Aria Stacked Diamond Earrings",
+    "collection": "Tribal Collection",
+    "category": "Earring",
+    "price": 73181.12,
+    "images": null,
+    "description": "Aria Stacked Diamond Earrings | Tribal Collection | Earring",
+    "product_url": "https://evoljewels.com/products/aria-stacked-diamond-earrings"
+  },
+  {
+    "id": 3,
+    "product_name": "Eclipse Enamel Diamond Earrings",
+    "collection": null,
+    "category": "Earring",
+    "price": 123940.92,
+    "images": null,
+    "description": "Eclipse Enamel Diamond Earrings | Earring",
+    "product_url": "https://evoljewels.com/products/eclipse-enamel-diamond-earrings"
+  },
+  {
+    "id": 4,
+    "product_name": "Blossom Vine Diamond Earrings",
+    "collection": null,
+    "category": "Earring",
+    "price": 210731.54,
+    "images": null,
+    "description": "Blossom Vine Diamond Earrings | Earring",
+    "product_url": "https://evoljewels.com/products/blossom-vine-diamond-earrings"
+  },
+  {
+    "id": 5,
+    "product_name": "Ethereal Petal Drop Earrings",
+    "collection": null,
+    "category": "Earring",
+    "price": 455910.5,
+    "images": null,
+    "description": "Ethereal Petal Drop Earrings | Earring",
+    "product_url": "https://evoljewels.com/products/ethereal-petal-drop-earrings"
+  },
+  {
+    "id": 6,
+    "product_name": "Cascade Diamond Chandelier Earrings",
+    "collection": null,
+    "category": "Earring",
+    "price": 226185.92,
+    "images": null,
+    "description": "Cascade Diamond Chandelier Earrings | Earring",
+    "product_url": "https://evoljewels.com/products/cascade-diamond-chandelier-earrings"
+  },
+  {
+    "id": 7,
+    "product_name": "Ethereal Cascade Diamond Earrings",
+    "collection": null,
+    "category": "Earring",
+    "price": 204770.74,
+    "images": null,
+    "description": "Ethereal Cascade Diamond Earrings | Earring",
+    "product_url": "https://evoljewels.com/products/ethereal-cascade-diamond-earrings"
+  },
+  {
+    "id": 8,
+    "product_name": "Swirl Drop Diamond Earrings",
+    "collection": "Cosmic Collection",
+    "category": "Earring",
+    "price": 78252.43,
+    "images": null,
+    "description": "Swirl Drop Diamond Earrings | Cosmic Collection | Earring",
+    "product_url": "https://evoljewels.com/products/swirl-drop-diamond-earrings"
+  },
+  {
+    "id": 9,
+    "product_name": "Radiant Spiral Diamond Earrings",
+    "collection": "Sun",
+    "category": "Earring",
+    "price": 106526.38,
+    "images": null,
+    "description": "Radiant Spiral Diamond Earrings | Sun | Earring",
+    "product_url": "https://evoljewels.com/products/radiant-spiral-diamond-earrings"
+  },
+  {
+    "id": 10,
+    "product_name": "Seraphine Leaf Diamond Ring",
+    "collection": "Floral Collection",
+    "category": "Ring",
+    "price": 60366.21,
+    "images": null,
+    "description": "Seraphine Leaf Diamond Ring | Floral Collection | Ring",
+    "product_url": "https://evoljewels.com/products/seraphine-leaf-diamond-ring"
+  },
+  {
+    "id": 11,
+    "product_name": "Aurora Crown Diamond Ring",
+    "collection": "Tribal Collection",
+    "category": "Ring",
+    "price": 48842.15,
+    "images": null,
+    "description": "Aurora Crown Diamond Ring | Tribal Collection | Ring",
+    "product_url": "https://evoljewels.com/products/aurora-crown-diamond-ring"
+  },
+  {
+    "id": 12,
+    "product_name": "Radiant Trinity Diamond Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 161697.54,
+    "images": null,
+    "description": "Radiant Trinity Diamond Ring | Ring",
+    "product_url": "https://evoljewels.com/products/radiant-trinity-diamond-ring"
+  },
+  {
+    "id": 13,
+    "product_name": "Phenomena Stackable Diamond Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 62307.63,
+    "images": null,
+    "description": "Phenomena Stackable Diamond Ring | Ring",
+    "product_url": "https://evoljewels.com/products/phenomena-stackable-diamond-ring"
+  },
+  {
+    "id": 14,
+    "product_name": "Lustrous Split Emerald Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 132950.13,
+    "images": null,
+    "description": "Lustrous Split Emerald Ring | Ring",
+    "product_url": "https://evoljewels.com/products/lustrous-split-emerald-ring"
+  },
+  {
+    "id": 15,
+    "product_name": "Alchemy Diamond Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 307245.76,
+    "images": null,
+    "description": "Alchemy Diamond Ring | Ring",
+    "product_url": "https://evoljewels.com/products/alchemy-diamond-ring"
+  },
+  {
+    "id": 16,
+    "product_name": "Eve Diamond Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 189864.9,
+    "images": null,
+    "description": "Eve Diamond Ring | Ring",
+    "product_url": "https://evoljewels.com/products/eve-diamond-ring"
+  },
+  {
+    "id": 17,
+    "product_name": "Ethereal Pear Diamond Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 207369.29,
+    "images": null,
+    "description": "Ethereal Pear Diamond Ring | Ring",
+    "product_url": "https://evoljewels.com/products/ethereal-pear-diamond-ring"
+  },
+  {
+    "id": 18,
+    "product_name": "Halo Glow Diamond Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 136083.82,
+    "images": null,
+    "description": "Halo Glow Diamond Ring | Ring",
+    "product_url": "https://evoljewels.com/products/halo-glow-diamond-ring"
+  },
+  {
+    "id": 19,
+    "product_name": "Infinity Round Diamond Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 112273.24,
+    "images": null,
+    "description": "Infinity Round Diamond Ring | Ring",
+    "product_url": "https://evoljewels.com/products/infinity-round-diamond-ring"
+  },
+  {
+    "id": 20,
+    "product_name": "Sculpted Pear Signet Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 94996.57,
+    "images": null,
+    "description": "Sculpted Pear Signet Ring | Ring",
+    "product_url": "https://evoljewels.com/products/sculpted-pear-signet-ring"
+  },
+  {
+    "id": 21,
+    "product_name": "Elyse Round Diamond Solitaire",
+    "collection": null,
+    "category": "Ring",
+    "price": 146406.0,
+    "images": null,
+    "description": "Elyse Round Diamond Solitaire | Ring",
+    "product_url": "https://evoljewels.com/products/elyse-round-diamond-solitaire"
+  },
+  {
+    "id": 22,
+    "product_name": "Colossus Diamond Halo Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 183617.77,
+    "images": null,
+    "description": "Colossus Diamond Halo Ring | Ring",
+    "product_url": "https://evoljewels.com/products/colossus-diamond-halo-ring"
+  },
+  {
+    "id": 23,
+    "product_name": "Gracie Diamond Eternity Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 263352.2,
+    "images": null,
+    "description": "Gracie Diamond Eternity Ring | Ring",
+    "product_url": "https://evoljewels.com/products/gracie-diamond-eternity-ring"
+  },
+  {
+    "id": 24,
+    "product_name": "Bold Pear Diamond Ring",
+    "collection": null,
+    "category": "Ring",
+    "price": 112516.85,
+    "images": null,
+    "description": "Bold Pear Diamond Ring | Ring",
+    "product_url": "https://evoljewels.com/products/bold-pear-diamond-ring"
+  },
+  {
+    "id": 25,
+    "product_name": "Butterfly Whimsy Diamond Pendant",
+    "collection": "Butterfly Collection",
+    "category": "Pendant",
+    "price": 48196.36,
+    "images": null,
+    "description": "Butterfly Whimsy Diamond Pendant | Butterfly Collection | Pendant",
+    "product_url": "https://evoljewels.com/products/butterfly-whimsy-diamond-pendant"
+  },
+  {
+    "id": 26,
+    "product_name": "Swirl Drop Diamond Pendant",
+    "collection": "Cosmic Collection",
+    "category": "Pendant",
+    "price": 43684.22,
+    "images": null,
+    "description": "Swirl Drop Diamond Pendant | Cosmic Collection | Pendant",
+    "product_url": "https://evoljewels.com/products/swirl-drop-diamond-pendant"
+  },
+  {
+    "id": 27,
+    "product_name": "Diamond Embrace Pendant",
+    "collection": "Floral Collection",
+    "category": "Pendant",
+    "price": 61633.71,
+    "images": null,
+    "description": "Diamond Embrace Pendant | Floral Collection | Pendant",
+    "product_url": "https://evoljewels.com/products/diamond-embrace-pendant"
+  },
+  {
+    "id": 28,
+    "product_name": "Modern Layered Diamond Pendant",
+    "collection": "Tribal Collection",
+    "category": "Pendant",
+    "price": 56855.99,
+    "images": null,
+    "description": "Modern Layered Diamond Pendant | Tribal Collection | Pendant",
+    "product_url": "https://evoljewels.com/products/modern-layered-diamond-pendant"
+  },
+  {
+    "id": 29,
+    "product_name": "Zuri Diamond Pendant",
+    "collection": null,
+    "category": "Pendant",
+    "price": 71835.44,
+    "images": null,
+    "description": "Zuri Diamond Pendant | Pendant",
+    "product_url": "https://evoljewels.com/products/zuri-diamond-pendant"
+  },
+  {
+    "id": 30,
+    "product_name": "Infinitum Diamond Pendant",
+    "collection": null,
+    "category": "Pendant",
+    "price": 39284.93,
+    "images": null,
+    "description": "Infinitum Diamond Pendant | Pendant",
+    "product_url": "https://evoljewels.com/products/infinitum-diamond-pendant"
+  },
+  {
+    "id": 31,
+    "product_name": "Apollo Diamond Pendant",
+    "collection": null,
+    "category": "Pendant",
+    "price": 176982.14,
+    "images": null,
+    "description": "Apollo Diamond Pendant | Pendant",
+    "product_url": "https://evoljewels.com/products/apollo-diamond-pendant"
+  },
+  {
+    "id": 32,
+    "product_name": "My Beloved Diamond Pendant",
+    "collection": null,
+    "category": "Pendant",
+    "price": 97157.72,
+    "images": null,
+    "description": "My Beloved Diamond Pendant | Pendant",
+    "product_url": "https://evoljewels.com/products/my-beloved-diamond-pendant"
+  },
+  {
+    "id": 33,
+    "product_name": "Circle Of Life Diamond Pendant",
+    "collection": null,
+    "category": "Pendant",
+    "price": 34476.48,
+    "images": null,
+    "description": "Circle Of Life Diamond Pendant | Pendant",
+    "product_url": "https://evoljewels.com/products/circle-of-life-diamond-pendant"
+  },
+  {
+    "id": 34,
+    "product_name": "Helios Diamond Halo Pendant",
+    "collection": null,
+    "category": "Pendant",
+    "price": 180317.52,
+    "images": null,
+    "description": "Helios Diamond Halo Pendant | Pendant",
+    "product_url": "https://evoljewels.com/products/helios-diamond-halo-pendant"
+  },
+  {
+    "id": 35,
+    "product_name": "Eden Diamond Pendant",
+    "collection": null,
+    "category": "Pendant",
+    "price": 46131.6,
+    "images": null,
+    "description": "Eden Diamond Pendant | Pendant",
+    "product_url": "https://evoljewels.com/products/eden-diamond-pendant"
+  },
+  {
+    "id": 36,
+    "product_name": "Davina Diamond Halo Pendant",
+    "collection": null,
+    "category": "Pendant",
+    "price": 50446.46,
+    "images": null,
+    "description": "Davina Diamond Halo Pendant | Pendant",
+    "product_url": "https://evoljewels.com/products/davina-diamond-halo-pendant"
+  },
+  {
+    "id": 37,
+    "product_name": "Heart Diamond Pendant",
+    "collection": "Sun",
+    "category": "Pendant",
+    "price": 235460.03,
+    "images": null,
+    "description": "Heart Diamond Pendant | Sun | Pendant",
+    "product_url": "https://evoljewels.com/products/heart-diamond-pendant"
+  },
+  {
+    "id": 38,
+    "product_name": "Valentine Diamond Pendant",
+    "collection": "Paan Collection",
+    "category": "Pendant",
+    "price": 34670.55,
+    "images": null,
+    "description": "Valentine Diamond Pendant | Paan Collection | Pendant",
+    "product_url": "https://evoljewels.com/products/valentine-diamond-pendant"
+  },
+  {
+    "id": 39,
+    "product_name": "Regal Crown Bangle Bracelet",
+    "collection": "Tribal Collection",
+    "category": "Bracelet",
+    "price": 167725.11,
+    "images": null,
+    "description": "Regal Crown Bangle Bracelet | Tribal Collection | Bracelet",
+    "product_url": "https://evoljewels.com/products/regal-crown-bangle-bracelet"
+  },
+  {
+    "id": 40,
+    "product_name": "Ethereal Spiral Diamond Bracelet",
+    "collection": "Sun",
+    "category": "Bracelet",
+    "price": 199074.41,
+    "images": null,
+    "description": "Ethereal Spiral Diamond Bracelet | Sun | Bracelet",
+    "product_url": "https://evoljewels.com/products/ethereal-spiral-diamond-bracelet"
+  },
+  {
+    "id": 41,
+    "product_name": "Eternal Spark Diamond Bracelet",
+    "collection": null,
+    "category": "Bracelet",
+    "price": 310678.04,
+    "images": null,
+    "description": "Eternal Spark Diamond Bracelet | Bracelet",
+    "product_url": "https://evoljewels.com/products/eternal-spark-diamond-bracelet"
+  },
+  {
+    "id": 42,
+    "product_name": "Orion Diamond Bracelet",
+    "collection": null,
+    "category": "Bracelet",
+    "price": 259135.49,
+    "images": null,
+    "description": "Orion Diamond Bracelet | Bracelet",
+    "product_url": "https://evoljewels.com/products/orion-diamond-bracelet"
+  },
+  {
+    "id": 43,
+    "product_name": "Poly Dazzle Diamond Tennis Bracelet",
+    "collection": null,
+    "category": "Bracelet",
+    "price": 357003.21,
+    "images": null,
+    "description": "Poly Dazzle Diamond Tennis Bracelet | Bracelet",
+    "product_url": "https://evoljewels.com/products/poly-dazzle-diamond-tennis-bracelet"
+  },
+  {
+    "id": 44,
+    "product_name": "Twain Sparkle Cuff Bracelet",
+    "collection": null,
+    "category": "Bracelet",
+    "price": 231479.56,
+    "images": null,
+    "description": "Twain Sparkle Cuff Bracelet | Bracelet",
+    "product_url": "https://evoljewels.com/products/twain-sparkle-cuff-bracelet"
+  },
+  {
+    "id": 45,
+    "product_name": "Trinity Diamond Bangle Bracelet",
+    "collection": null,
+    "category": "Bracelet",
+    "price": 250506.97,
+    "images": null,
+    "description": "Trinity Diamond Bangle Bracelet | Bracelet",
+    "product_url": "https://evoljewels.com/products/trinity-diamond-bangle-bracelet"
+  },
+  {
+    "id": 46,
+    "product_name": "Classic Tennis Bracelet",
+    "collection": null,
+    "category": "Bracelet",
+    "price": 628331.61,
+    "images": null,
+    "description": "Classic Tennis Bracelet | Bracelet",
+    "product_url": "https://evoljewels.com/products/classic-tennis-bracelet"
+  },
+  {
+    "id": 47,
+    "product_name": "Sterling Diamond Bangle Bracelet",
+    "collection": null,
+    "category": "Bracelet",
+    "price": 432449.71,
+    "images": null,
+    "description": "Sterling Diamond Bangle Bracelet | Bracelet",
+    "product_url": "https://evoljewels.com/products/sterling-diamond-bangle-bracelet"
+  },
+  {
+    "id": 48,
+    "product_name": "Frosty Drops Diamond Bracelet",
+    "collection": null,
+    "category": "Bracelet",
+    "price": 212512.85,
+    "images": null,
+    "description": "Frosty Drops Diamond Bracelet | Bracelet",
+    "product_url": "https://evoljewels.com/products/frosty-drops-diamond-bracelet"
+  },
+  {
+    "id": 49,
+    "product_name": "Meadow Graduation Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 470722.14,
+    "images": null,
+    "description": "Meadow Graduation Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/meadow-graduation-necklace"
+  },
+  {
+    "id": 50,
+    "product_name": "Rainbow Tennis Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 244844.81,
+    "images": null,
+    "description": "Rainbow Tennis Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/rainbow-tennis-necklace"
+  },
+  {
+    "id": 51,
+    "product_name": "Celestial Cascade Diamond Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 704761.82,
+    "images": null,
+    "description": "Celestial Cascade Diamond Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/celestial-cascade-diamond-necklace"
+  },
+  {
+    "id": 52,
+    "product_name": "Lustre Five Stone Diamond Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 68559.56,
+    "images": null,
+    "description": "Lustre Five Stone Diamond Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/lustre-five-stone-diamond-necklace"
+  },
+  {
+    "id": 53,
+    "product_name": "Ivy Diamond Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 1024606.3,
+    "images": null,
+    "description": "Ivy Diamond Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/ivy-diamond-necklace"
+  },
+  {
+    "id": 54,
+    "product_name": "Periwinkle Diamond Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 56130.27,
+    "images": null,
+    "description": "Periwinkle Diamond Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/periwinkle-diamond-necklace"
+  },
+  {
+    "id": 55,
+    "product_name": "Gamut Marquise Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 62608.29,
+    "images": null,
+    "description": "Gamut Marquise Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/gamut-marquise-necklace"
+  },
+  {
+    "id": 56,
+    "product_name": "Vector Classic Tennis Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 1265973.97,
+    "images": null,
+    "description": "Vector Classic Tennis Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/vector-classic-tennis-necklace"
+  },
+  {
+    "id": 57,
+    "product_name": "Elite Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 48994.68,
+    "images": null,
+    "description": "Elite Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/elite-necklace"
+  },
+  {
+    "id": 58,
+    "product_name": "Ivy Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 412208.73,
+    "images": null,
+    "description": "Ivy Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/ivy-necklace"
+  },
+  {
+    "id": 59,
+    "product_name": "Peace Enchantress Charms Necklace",
+    "collection": null,
+    "category": "Necklace",
+    "price": 556016.68,
+    "images": null,
+    "description": "Peace Enchantress Charms Necklace | Necklace",
+    "product_url": "https://evoljewels.com/products/peace-enchantress-charms-necklace"
+  }
+]
