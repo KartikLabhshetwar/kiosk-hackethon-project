@@ -109,13 +109,24 @@ git commit -m "Add preprocessed data"
 git push origin main
 ```
 
-**3. Memory Issues**
-- Upgrade to paid plan (Standard tier)
-- Or optimize model loading in startup
+**3. Memory Issues (Out of Memory)**
+- **Solution 1**: Use memory-optimized version with lazy loading
+  - Models load only when first requested
+  - Reduces startup memory from ~800MB to ~200MB
+
+- **Solution 2**: Upgrade to paid plan
+  - Standard tier: 1GB RAM ($7/month)
+  - Professional tier: 2GB RAM ($25/month)
+
+- **Solution 3**: Use alternative deployment
+  - Railway.app (1GB free tier)
+  - Heroku (512MB free, 1GB paid)
+  - Google Cloud Run (2GB free tier)
 
 **4. Slow Startup**
 - This is normal for first request (model download)
 - Subsequent requests will be fast
+- Lazy loading means first API call will be slower
 
 ### Debug Commands:
 

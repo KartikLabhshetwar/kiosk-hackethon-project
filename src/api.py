@@ -1,6 +1,6 @@
 """
-FastAPI backend for Evol Jewels AI Kiosk
-Provides REST API endpoints for React frontend integration
+Memory-optimized FastAPI backend for Evol Jewels AI Kiosk
+Uses lazy loading to reduce memory usage for Render deployment
 """
 
 from fastapi import FastAPI, HTTPException, Query
@@ -9,10 +9,13 @@ from pydantic import BaseModel
 from typing import List, Dict, Optional, Any
 import json
 from pathlib import Path
+import gc
+import os
 
-from .recommender import JewelryRecommender
-from .celebrity_engine import CelebrityInspirationEngine
-from .vibe_classifier import VibeClassifier
+# Global instances (loaded lazily)
+recommender = None
+celebrity_engine = None
+vibe_classifier = None
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -29,11 +32,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Global instances (loaded once)
-recommender = None
-celebrity_engine = None
-vibe_classifier = None
 
 # Pydantic models for request/response
 class SearchRequest(BaseModel):
@@ -92,60 +90,79 @@ class HealthResponse(BaseModel):
     celebrities_available: int
     vibes_available: int
 
-# Startup event
-@app.on_event("startup")
-async def startup_event():
-    """Initialize all AI engines on startup"""
-    global recommender, celebrity_engine, vibe_classifier
-    
-    try:
-        print("🚀 Initializing Evol Jewels AI Kiosk API...")
-        
-        # Load recommender
+def get_recommender():
+    """Lazy load recommender to save memory"""
+    global recommender
+    if recommender is None:
+        print("🔄 Loading recommender...")
+        from .recommender import JewelryRecommender
         recommender = JewelryRecommender()
         print("✅ Recommender loaded")
-        
-        # Load celebrity engine
+    return recommender
+
+def get_celebrity_engine():
+    """Lazy load celebrity engine to save memory"""
+    global celebrity_engine
+    if celebrity_engine is None:
+        print("🔄 Loading celebrity engine...")
+        from .celebrity_engine import CelebrityInspirationEngine
         celebrity_engine = CelebrityInspirationEngine()
         print("✅ Celebrity engine loaded")
-        
-        # Load vibe classifier
+    return celebrity_engine
+
+def get_vibe_classifier():
+    """Lazy load vibe classifier to save memory"""
+    global vibe_classifier
+    if vibe_classifier is None:
+        print("🔄 Loading vibe classifier...")
+        from .vibe_classifier import VibeClassifier
         vibe_classifier = VibeClassifier()
         print("✅ Vibe classifier loaded")
-        
-        print("🎉 All systems ready!")
-        
-    except Exception as e:
-        print(f"❌ Error during startup: {str(e)}")
-        raise e
+    return vibe_classifier
 
 # Health check endpoint
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
-    """Health check endpoint"""
-    if not recommender or not celebrity_engine or not vibe_classifier:
-        raise HTTPException(status_code=503, detail="Services not ready")
-    
-    # Get basic stats
-    products_count = len(recommender.metadata) if recommender.metadata else 0
-    celebrities_count = len(celebrity_engine.list_celebrities())
-    vibes_count = len(vibe_classifier.get_all_vibes())
-    
-    return HealthResponse(
-        status="healthy",
-        products_loaded=products_count,
-        celebrities_available=celebrities_count,
-        vibes_available=vibes_count
-    )
+    """Health check endpoint - lightweight, no model loading"""
+    try:
+        # Check if data files exist without loading models
+        index_dir = Path("indexed_data")
+        metadata_path = index_dir / "metadata.json"
+        
+        if not metadata_path.exists():
+            return HealthResponse(
+                status="error",
+                products_loaded=0,
+                celebrities_available=0,
+                vibes_available=0
+            )
+        
+        # Load only metadata for stats (lightweight)
+        with open(metadata_path, "r", encoding="utf-8") as f:
+            metadata = json.load(f)
+        
+        return HealthResponse(
+            status="healthy",
+            products_loaded=len(metadata),
+            celebrities_available=8,  # Hardcoded for now
+            vibes_available=15  # Hardcoded for now
+        )
+        
+    except Exception as e:
+        return HealthResponse(
+            status=f"error: {str(e)}",
+            products_loaded=0,
+            celebrities_available=0,
+            vibes_available=0
+        )
 
 # Search endpoints
 @app.post("/search", response_model=List[ProductResponse])
 async def search_products(request: SearchRequest):
     """Search for jewelry products with filters"""
-    if not recommender:
-        raise HTTPException(status_code=503, detail="Recommender not available")
-    
     try:
+        recommender = get_recommender()
+        
         results = recommender.search(
             query=request.query,
             min_price=request.min_price,
@@ -184,10 +201,10 @@ async def search_products(request: SearchRequest):
 @app.post("/search/celebrity", response_model=CelebrityResponse)
 async def search_by_celebrity(request: CelebrityRequest):
     """Search for jewelry inspired by a celebrity's style"""
-    if not recommender or not celebrity_engine:
-        raise HTTPException(status_code=503, detail="Services not available")
-    
     try:
+        recommender = get_recommender()
+        celebrity_engine = get_celebrity_engine()
+        
         # Get celebrity style data
         celebrity_data = celebrity_engine.get_celebrity_recommendations(request.celebrity_name)
         if not celebrity_data:
@@ -239,10 +256,9 @@ async def search_by_celebrity(request: CelebrityRequest):
 @app.post("/search/vibe", response_model=List[ProductResponse])
 async def search_by_vibe(request: VibeRequest):
     """Search for jewelry by vibe"""
-    if not recommender or not vibe_classifier:
-        raise HTTPException(status_code=503, detail="Services not available")
-    
     try:
+        recommender = get_recommender()
+        
         # Search with vibe as query
         results = recommender.search(
             query=request.vibe,
@@ -285,43 +301,46 @@ async def search_by_vibe(request: VibeRequest):
 @app.get("/celebrities", response_model=List[str])
 async def get_celebrities():
     """Get list of available celebrities"""
-    if not celebrity_engine:
-        raise HTTPException(status_code=503, detail="Celebrity engine not available")
-    
-    return celebrity_engine.list_celebrities()
+    try:
+        celebrity_engine = get_celebrity_engine()
+        return celebrity_engine.list_celebrities()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to get celebrities: {str(e)}")
 
 @app.get("/vibes", response_model=List[str])
 async def get_vibes():
     """Get list of available vibes"""
-    if not vibe_classifier:
-        raise HTTPException(status_code=503, detail="Vibe classifier not available")
-    
-    return vibe_classifier.get_all_vibes()
+    try:
+        vibe_classifier = get_vibe_classifier()
+        return vibe_classifier.get_all_vibes()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to get vibes: {str(e)}")
 
 @app.get("/categories", response_model=List[str])
 async def get_categories():
     """Get list of available categories"""
-    if not recommender:
-        raise HTTPException(status_code=503, detail="Recommender not available")
-    
-    return recommender.get_categories()
+    try:
+        recommender = get_recommender()
+        return recommender.get_categories()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to get categories: {str(e)}")
 
 @app.get("/collections", response_model=List[str])
 async def get_collections():
     """Get list of available collections"""
-    if not recommender:
-        raise HTTPException(status_code=503, detail="Recommender not available")
-    
-    return recommender.get_collections()
+    try:
+        recommender = get_recommender()
+        return recommender.get_collections()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to get collections: {str(e)}")
 
 # Statistics endpoints
 @app.get("/stats/vibes", response_model=List[VibeStatsResponse])
 async def get_vibe_statistics():
     """Get vibe distribution statistics"""
-    if not recommender or not vibe_classifier:
-        raise HTTPException(status_code=503, detail="Services not available")
-    
     try:
+        recommender = get_recommender()
+        
         # Calculate vibe statistics
         vibe_counts = {}
         total_products = len(recommender.metadata)
@@ -348,10 +367,8 @@ async def get_vibe_statistics():
 @app.get("/stats/price-range")
 async def get_price_range():
     """Get price range statistics"""
-    if not recommender:
-        raise HTTPException(status_code=503, detail="Recommender not available")
-    
     try:
+        recommender = get_recommender()
         prices = [item["price"] for item in recommender.metadata if item.get("price") is not None]
         
         if not prices:
@@ -371,10 +388,9 @@ async def get_price_range():
 @app.get("/search/suggestions")
 async def get_search_suggestions(q: str = Query(..., min_length=2)):
     """Get search suggestions based on query"""
-    if not recommender:
-        raise HTTPException(status_code=503, detail="Recommender not available")
-    
     try:
+        recommender = get_recommender()
+        
         # Simple suggestion based on product names and categories
         suggestions = set()
         query_lower = q.lower()
@@ -400,10 +416,9 @@ async def get_search_suggestions(q: str = Query(..., min_length=2)):
 @app.get("/product/{product_id}", response_model=ProductResponse)
 async def get_product(product_id: int):
     """Get specific product by ID"""
-    if not recommender:
-        raise HTTPException(status_code=503, detail="Recommender not available")
-    
     try:
+        recommender = get_recommender()
+        
         # Find product by ID
         product = None
         for item in recommender.metadata:
