@@ -199,5 +199,3 @@ This project addresses the **Evol Jewels AI Kiosk Hackathon** requirements:
 ## 📚 Documentation
 
 - **[ARCHITECTURE_V2.md](ARCHITECTURE_V2.md)**: Complete system architecture
-- **[BACKEND_API.md](BACKEND_API.md)**: API documentation and endpoints
-- **[HACKATHON_SOLUTION.md](HACKATHON_SOLUTION.md)**: Hackathon requirements coverage
