@@ -94,31 +94,64 @@ def get_recommender():
     """Lazy load recommender to save memory"""
     global recommender
     if recommender is None:
-        print("🔄 Loading recommender...")
-        from .recommender import JewelryRecommender
-        recommender = JewelryRecommender()
-        print("✅ Recommender loaded")
+        try:
+            print("🔄 Loading recommender...")
+            from .recommender import JewelryRecommender
+            recommender = JewelryRecommender()
+            print("✅ Recommender loaded")
+        except ImportError as e:
+            print(f"❌ Recommender not available: {e}")
+            raise HTTPException(status_code=503, detail="AI features not available - missing dependencies")
+        except Exception as e:
+            print(f"❌ Error loading recommender: {e}")
+            raise HTTPException(status_code=503, detail=f"Recommender failed to load: {str(e)}")
     return recommender
 
 def get_celebrity_engine():
     """Lazy load celebrity engine to save memory"""
     global celebrity_engine
     if celebrity_engine is None:
-        print("🔄 Loading celebrity engine...")
-        from .celebrity_engine import CelebrityInspirationEngine
-        celebrity_engine = CelebrityInspirationEngine()
-        print("✅ Celebrity engine loaded")
+        try:
+            print("🔄 Loading celebrity engine...")
+            from .celebrity_engine import CelebrityInspirationEngine
+            celebrity_engine = CelebrityInspirationEngine()
+            print("✅ Celebrity engine loaded")
+        except ImportError as e:
+            print(f"❌ Celebrity engine not available: {e}")
+            raise HTTPException(status_code=503, detail="Celebrity features not available - missing dependencies")
+        except Exception as e:
+            print(f"❌ Error loading celebrity engine: {e}")
+            raise HTTPException(status_code=503, detail=f"Celebrity engine failed to load: {str(e)}")
     return celebrity_engine
 
 def get_vibe_classifier():
     """Lazy load vibe classifier to save memory"""
     global vibe_classifier
     if vibe_classifier is None:
-        print("🔄 Loading vibe classifier...")
-        from .vibe_classifier import VibeClassifier
-        vibe_classifier = VibeClassifier()
-        print("✅ Vibe classifier loaded")
+        try:
+            print("🔄 Loading vibe classifier...")
+            from .vibe_classifier import VibeClassifier
+            vibe_classifier = VibeClassifier()
+            print("✅ Vibe classifier loaded")
+        except ImportError as e:
+            print(f"❌ Vibe classifier not available: {e}")
+            raise HTTPException(status_code=503, detail="Vibe features not available - missing dependencies")
+        except Exception as e:
+            print(f"❌ Error loading vibe classifier: {e}")
+            raise HTTPException(status_code=503, detail=f"Vibe classifier failed to load: {str(e)}")
     return vibe_classifier
+
+# Root endpoint - always works
+@app.get("/")
+async def root():
+    """Root endpoint"""
+    return {
+        "message": "Evol Jewels AI Kiosk API",
+        "version": "1.0.0",
+        "status": "running",
+        "docs": "/docs",
+        "health": "/health"
+    }
 
 # Health check endpoint
 @app.get("/health", response_model=HealthResponse)
