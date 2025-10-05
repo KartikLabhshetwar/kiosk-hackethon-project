@@ -43,6 +43,7 @@ st.markdown("""
         font-weight: bold;
         padding: 0.75rem;
         font-size: 1.1rem;
+        margin: 1rem 0;
     }
 </style>
 """, unsafe_allow_html=True)
