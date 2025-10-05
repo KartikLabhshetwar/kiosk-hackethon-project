@@ -10,9 +10,9 @@ from typing import List, Dict, Optional, Any
 import json
 from pathlib import Path
 
-from recommender import JewelryRecommender
-from celebrity_engine import CelebrityInspirationEngine
-from vibe_classifier import VibeClassifier
+from .recommender import JewelryRecommender
+from .celebrity_engine import CelebrityInspirationEngine
+from .vibe_classifier import VibeClassifier
 
 # Initialize FastAPI app
 app = FastAPI(
