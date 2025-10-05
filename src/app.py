@@ -1,3 +1,7 @@
+import os
+# Fix for huggingface tokenizers parallelism warnings
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 import streamlit as st
 import sys
 from pathlib import Path
@@ -26,13 +30,6 @@ st.markdown("""
         text-align: center;
         color: #D4AF37;
         margin-bottom: 2rem;
-    }
-    .product-card {
-        border: 2px solid #D4AF37;
-        border-radius: 10px;
-        padding: 1.5rem;
-        margin: 1rem 0;
-        background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
     }
     .price-tag {
         font-size: 1.5rem;
@@ -65,19 +62,20 @@ def load_engines():
         vibe_classifier = VibeClassifier()
         return recommender, celebrity_engine, vibe_classifier
     except FileNotFoundError as e:
-        st.error(f"❌ {str(e)}")
-        st.info("💡 Run preprocessing first: `uv run python src/preprocess.py`")
+        st.error(f"Error: {str(e)}")
+        st.info("Run preprocessing first: `uv run python src/preprocess.py`")
         st.stop()
 
 def main():
     # Header
-    st.markdown('<div class="main-header">💎 Evol Jewels AI Stylist V2</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">Evol Jewels AI Stylist</div>', unsafe_allow_html=True)
+    st.markdown("---")
     
     # Load all engines
     recommender, celebrity_engine, vibe_classifier = load_engines()
     
     # Sidebar - Quick search mode
-    st.sidebar.title("🔍 Quick Search")
+    st.sidebar.title("Quick Search")
     quick_query = st.sidebar.text_input("Search jewelry...", placeholder="e.g., elegant gold necklace")
     
     if quick_query:
@@ -86,25 +84,27 @@ def main():
         return
     
     # Main navigation
-    st.sidebar.title("🎯 Navigation")
+    st.sidebar.title("Navigation")
+    st.sidebar.markdown("---")
     page = st.sidebar.selectbox(
         "Choose your experience:",
-        ["🌟 Celebrity Inspiration", "🎨 Vibe Explorer", "🎯 Personal Stylist", "📊 System Stats"]
+        ["Celebrity Inspiration", "Vibe Explorer", "Personal Stylist", "System Stats"]
     )
     
-    if page == "🌟 Celebrity Inspiration":
+    if page == "Celebrity Inspiration":
         show_celebrity_page(recommender, celebrity_engine)
-    elif page == "🎨 Vibe Explorer":
+    elif page == "Vibe Explorer":
         show_vibe_page(recommender, vibe_classifier)
-    elif page == "🎯 Personal Stylist":
+    elif page == "Personal Stylist":
         show_personal_stylist_page(recommender, celebrity_engine, vibe_classifier)
-    elif page == "📊 System Stats":
+    elif page == "System Stats":
         show_stats_page(recommender, celebrity_engine, vibe_classifier)
 
 def show_celebrity_page(recommender, celebrity_engine):
     """Celebrity Inspiration Page"""
-    st.header("🌟 Celebrity Inspiration Engine")
+    st.header("Celebrity Inspiration Engine")
     st.write("Get jewelry recommendations inspired by your favorite celebrities!")
+    st.markdown("---")
     
     # Get all celebrities
     celebrities = celebrity_engine.list_celebrities()
@@ -114,7 +114,7 @@ def show_celebrity_page(recommender, celebrity_engine):
     for idx, celeb in enumerate(celebrities):
         with cols[idx % 3]:
             display_name = celeb.replace('_', ' ').title()
-            if st.button(f"✨ {display_name}", key=f"celeb_{idx}"):
+            if st.button(f"{display_name}", key=f"celeb_{idx}"):
                 st.session_state.selected_celebrity = celeb
                 st.session_state.celebrity_step = 1  # Move to next step
                 st.rerun()
@@ -125,7 +125,8 @@ def show_celebrity_page(recommender, celebrity_engine):
         celeb_data = celebrity_engine.get_celebrity_recommendations(celeb)
         
         st.markdown("---")
-        st.subheader(f"✨ {celeb.replace('_', ' ').title()}'s Style")
+        st.subheader(f"{celeb.replace('_', ' ').title()}'s Style")
+        st.markdown("---")
         
         col1, col2 = st.columns(2)
         
@@ -139,36 +140,36 @@ def show_celebrity_page(recommender, celebrity_engine):
             st.write(f"**Keywords:** {', '.join(celeb_data['keywords'][:5])}")
             st.write(f"**Preferred Categories:** {', '.join(celeb_data['preferred_categories'])}")
         
+        st.subheader("What would you like to explore?")
         st.markdown("---")
-        st.subheader("🎯 What would you like to explore?")
         
         col1, col2, col3 = st.columns(3)
         
         with col1:
-            if st.button("💎 Browse by Category", key="celeb_category"):
+            if st.button("Browse by Category", key="celeb_category"):
                 st.session_state.celebrity_step = 2
                 st.session_state.celebrity_action = "category"
                 st.rerun()
         
         with col2:
-            if st.button("🎨 Explore by Vibe", key="celeb_vibe"):
+            if st.button("Explore by Vibe", key="celeb_vibe"):
                 st.session_state.celebrity_step = 2
                 st.session_state.celebrity_action = "vibe"
                 st.rerun()
         
         with col3:
-            if st.button("🎉 Choose Occasion", key="celeb_occasion"):
+            if st.button("Choose Occasion", key="celeb_occasion"):
                 st.session_state.celebrity_step = 2
                 st.session_state.celebrity_action = "occasion"
                 st.rerun()
         
         # Option to get direct recommendations
         st.markdown("---")
-        if st.button("🚀 Get Direct Recommendations", key="celeb_direct"):
+        if st.button("Get Direct Recommendations", key="celeb_direct"):
             st.session_state.celebrity_step = 3
             st.rerun()
         
-        if st.button("🔄 Choose Different Celebrity", key="celeb_back"):
+        if st.button("Choose Different Celebrity", key="celeb_back"):
             delattr(st.session_state, 'selected_celebrity')
             if hasattr(st.session_state, 'celebrity_step'):
                 delattr(st.session_state, 'celebrity_step')
@@ -179,7 +180,8 @@ def show_celebrity_page(recommender, celebrity_engine):
         celeb = st.session_state.selected_celebrity
         action = st.session_state.celebrity_action
         
-        st.subheader(f"✨ {celeb.replace('_', ' ').title()}'s Style - {action.title()}")
+        st.subheader(f"{celeb.replace('_', ' ').title()}'s Style - {action.title()}")
+        st.markdown("---")
         
         if action == "category":
             show_celebrity_category_options(recommender, celebrity_engine, celeb)
@@ -191,7 +193,8 @@ def show_celebrity_page(recommender, celebrity_engine):
     # Show direct recommendations
     elif hasattr(st.session_state, 'selected_celebrity') and st.session_state.celebrity_step == 3:
         celeb = st.session_state.selected_celebrity
-        st.subheader(f"🎁 {celeb.replace('_', ' ').title()}'s Recommended Jewelry")
+        st.subheader(f"{celeb.replace('_', ' ').title()}'s Recommended Jewelry")
+        st.markdown("---")
         
         results = recommender.search_by_celebrity(celeb, top_k=6)
         
@@ -200,21 +203,22 @@ def show_celebrity_page(recommender, celebrity_engine):
         else:
             st.warning("No jewelry found matching this celebrity's style.")
         
-        if st.button("🔄 Back to Celebrity Options", key="celeb_back_options"):
+        if st.button("Back to Celebrity Options", key="celeb_back_options"):
             st.session_state.celebrity_step = 1
             st.rerun()
     
     # Show results if available (step 4)
     elif hasattr(st.session_state, 'selected_celebrity') and st.session_state.celebrity_step == 4:
         celeb = st.session_state.selected_celebrity
-        st.subheader(f"🎁 {celeb.replace('_', ' ').title()}'s Inspired Recommendations")
+        st.subheader(f"{celeb.replace('_', ' ').title()}'s Inspired Recommendations")
+        st.markdown("---")
         
         if hasattr(st.session_state, 'celebrity_results'):
             display_results(st.session_state.celebrity_results, recommender)
         else:
             st.warning("No results found. Please try different options.")
         
-        if st.button("🔄 Try Different Options", key="celeb_try_again"):
+        if st.button("Try Different Options", key="celeb_try_again"):
             st.session_state.celebrity_step = 1
             if hasattr(st.session_state, 'celebrity_results'):
                 delattr(st.session_state, 'celebrity_results')
@@ -226,6 +230,7 @@ def show_celebrity_category_options(recommender, celebrity_engine, celeb):
     categories = recommender.get_categories()
     
     st.write("**Choose a category that matches the celebrity's style:**")
+    st.markdown("---")
     
     cols = st.columns(3)
     for idx, category in enumerate(categories):
@@ -244,7 +249,7 @@ def show_celebrity_category_options(recommender, celebrity_engine, celeb):
                 st.session_state.celebrity_step = 4
                 st.rerun()
     
-    if st.button("🔄 Back to Celebrity Style", key="celeb_back_style"):
+    if st.button("Back to Celebrity Style", key="celeb_back_style"):
         st.session_state.celebrity_step = 1
         st.rerun()
 
@@ -254,6 +259,7 @@ def show_celebrity_vibe_options(recommender, celebrity_engine, celeb):
     vibes = celeb_data['vibes']  # Use celebrity's vibes
     
     st.write("**Choose a vibe that matches the celebrity's style:**")
+    st.markdown("---")
     
     cols = st.columns(3)
     for idx, vibe in enumerate(vibes):
@@ -266,7 +272,7 @@ def show_celebrity_vibe_options(recommender, celebrity_engine, celeb):
                 st.session_state.celebrity_step = 4
                 st.rerun()
     
-    if st.button("🔄 Back to Celebrity Style", key="celeb_back_style"):
+    if st.button("Back to Celebrity Style", key="celeb_back_style"):
         st.session_state.celebrity_step = 1
         st.rerun()
 
@@ -276,6 +282,7 @@ def show_celebrity_occasion_options(recommender, celebrity_engine, celeb):
     occasions = celeb_data['occasions']  # Use celebrity's occasions
     
     st.write("**Choose an occasion that matches the celebrity's style:**")
+    st.markdown("---")
     
     cols = st.columns(3)
     for idx, occasion in enumerate(occasions):
@@ -293,50 +300,53 @@ def show_celebrity_occasion_options(recommender, celebrity_engine, celeb):
                 st.session_state.celebrity_step = 4
                 st.rerun()
     
-    if st.button("🔄 Back to Celebrity Style", key="celeb_back_style"):
+    if st.button("Back to Celebrity Style", key="celeb_back_style"):
         st.session_state.celebrity_step = 1
         st.rerun()
     
 
 def show_vibe_page(recommender, vibe_classifier):
     """Vibe Explorer Page"""
-    st.header("🎨 Vibe Explorer")
+    st.header("Vibe Explorer")
     st.write("Explore jewelry by style vibes and discover your perfect match!")
+    st.markdown("---")
     
     # Get all vibes
     vibes = vibe_classifier.get_all_vibes()
     
-    # Vibe emojis
-    vibe_emojis = {
-        "royal": "👑", "traditional": "🏛️", "modern": "✨", "elegant": "💎",
-        "bohemian": "🌺", "vintage": "📜", "glamorous": "⭐", "minimalist": "○",
-        "statement": "💥", "festive": "🎉", "romantic": "💕", "professional": "💼",
-        "casual": "👕", "luxury": "💎", "artistic": "🎨"
+    # Vibe labels (no emojis)
+    vibe_labels = {
+        "royal": "Royal", "traditional": "Traditional", "modern": "Modern", "elegant": "Elegant",
+        "bohemian": "Bohemian", "vintage": "Vintage", "glamorous": "Glamorous", "minimalist": "Minimalist",
+        "statement": "Statement", "festive": "Festive", "romantic": "Romantic", "professional": "Professional",
+        "casual": "Casual", "luxury": "Luxury", "artistic": "Artistic"
     }
     
     # Display vibe grid
     cols = st.columns(4)
     for idx, vibe in enumerate(vibes):
         with cols[idx % 4]:
-            emoji = vibe_emojis.get(vibe, "💎")
-            if st.button(f"{emoji} {vibe.title()}", key=f"vibe_{idx}"):
+            label = vibe_labels.get(vibe, vibe.title())
+            if st.button(f"{label}", key=f"vibe_{idx}"):
                 st.session_state.selected_vibe = vibe
                 st.rerun()
     
     # Show vibe details and recommendations
     if hasattr(st.session_state, 'selected_vibe'):
         vibe = st.session_state.selected_vibe
-        emoji = vibe_emojis.get(vibe, "💎")
+        label = vibe_labels.get(vibe, vibe.title())
         
         st.markdown("---")
-        st.subheader(f"{emoji} {vibe.title()} Style")
+        st.subheader(f"{label} Style")
+        st.markdown("---")
         
         # Get vibe keywords
         keywords = vibe_classifier.get_vibe_keywords(vibe)
         st.write(f"**Keywords:** {', '.join(keywords[:10])}")
         
         # Get recommendations
-        st.subheader("🎁 Jewelry in This Vibe")
+        st.subheader("Jewelry in This Vibe")
+        st.markdown("---")
         results = recommender.search_by_vibe(vibe, top_k=6)
         
         if results:
@@ -344,14 +354,15 @@ def show_vibe_page(recommender, vibe_classifier):
         else:
             st.warning(f"No jewelry found with '{vibe}' vibe.")
         
-        if st.button("🔄 Choose Different Vibe"):
+        if st.button("Choose Different Vibe"):
             delattr(st.session_state, 'selected_vibe')
             st.rerun()
 
 def show_personal_stylist_page(recommender, celebrity_engine, vibe_classifier):
     """Personal Stylist Page - Original guided flow"""
-    st.header("🎯 Personal Stylist Mode")
+    st.header("Personal Stylist Mode")
     st.write("Let us guide you to the perfect jewelry!")
+    st.markdown("---")
     
     # Progress indicator
     progress = st.session_state.step / 4
@@ -372,7 +383,8 @@ def show_personal_stylist_page(recommender, celebrity_engine, vibe_classifier):
 
 def show_stats_page(recommender, celebrity_engine, vibe_classifier):
     """System Statistics Page"""
-    st.header("📊 System Statistics")
+    st.header("System Statistics")
+    st.markdown("---")
     
     # Get basic stats
     products_count = len(recommender.metadata)
@@ -392,7 +404,8 @@ def show_stats_page(recommender, celebrity_engine, vibe_classifier):
         st.metric("Vibes Available", vibes_count)
     
     # Vibe distribution
-    st.subheader("🎨 Vibe Distribution")
+    st.subheader("Vibe Distribution")
+    st.markdown("---")
     vibe_stats = recommender.get_vibe_statistics()
     
     if vibe_stats:
@@ -410,7 +423,8 @@ def show_stats_page(recommender, celebrity_engine, vibe_classifier):
         st.warning("No vibe statistics available.")
     
     # Price range
-    st.subheader("💰 Price Range")
+    st.subheader("Price Range")
+    st.markdown("---")
     prices = [item["price"] for item in recommender.metadata if item.get("price") is not None]
     
     if prices:
@@ -429,27 +443,30 @@ def show_stats_page(recommender, celebrity_engine, vibe_classifier):
             st.metric("Total Products", len(prices))
     
     # Categories
-    st.subheader("💎 Categories")
+    st.subheader("Categories")
+    st.markdown("---")
     categories = recommender.get_categories()
     st.write(f"**Available Categories:** {', '.join(categories)}")
     
     # Collections
-    st.subheader("🏛️ Collections")
+    st.subheader("Collections")
+    st.markdown("---")
     collections = recommender.get_collections()
     st.write(f"**Available Collections:** {', '.join(collections[:10])}")  # Show first 10
 
 def show_occasion_step(recommender):
-    st.header("🎉 What's the Occasion?")
+    st.header("What's the Occasion?")
+    st.markdown("---")
     
     col1, col2, col3 = st.columns(3)
     
     occasions = [
-        ("🎊 Wedding", "wedding"),
-        ("💍 Engagement", "engagement"),
-        ("🎂 Birthday", "birthday"),
-        ("🌟 Anniversary", "anniversary"),
-        ("👔 Party", "party"),
-        ("💼 Daily Wear", "daily casual")
+        ("Wedding", "wedding"),
+        ("Engagement", "engagement"),
+        ("Birthday", "birthday"),
+        ("Anniversary", "anniversary"),
+        ("Party", "party"),
+        ("Daily Wear", "daily casual")
     ]
     
     for idx, (label, value) in enumerate(occasions):
@@ -462,29 +479,31 @@ def show_occasion_step(recommender):
 
 def show_vibe_step(vibe_classifier):
     """Vibe selection step for personal stylist"""
-    st.header("💫 What Vibe Are You Looking For?")
+    st.header("What Vibe Are You Looking For?")
+    st.markdown("---")
     
     vibes = vibe_classifier.get_all_vibes()
     
-    # Vibe emojis
-    vibe_emojis = {
-        "royal": "👑", "traditional": "🏛️", "modern": "✨", "elegant": "💎",
-        "bohemian": "🌺", "vintage": "📜", "glamorous": "⭐", "minimalist": "○",
-        "statement": "💥", "festive": "🎉", "romantic": "💕", "professional": "💼",
-        "casual": "👕", "luxury": "💎", "artistic": "🎨"
+    # Vibe labels (no emojis)
+    vibe_labels = {
+        "royal": "Royal", "traditional": "Traditional", "modern": "Modern", "elegant": "Elegant",
+        "bohemian": "Bohemian", "vintage": "Vintage", "glamorous": "Glamorous", "minimalist": "Minimalist",
+        "statement": "Statement", "festive": "Festive", "romantic": "Romantic", "professional": "Professional",
+        "casual": "Casual", "luxury": "Luxury", "artistic": "Artistic"
     }
     
     cols = st.columns(4)
     for idx, vibe in enumerate(vibes):
         with cols[idx % 4]:
-            emoji = vibe_emojis.get(vibe, "💎")
-            if st.button(f"{emoji} {vibe.title()}", key=f"vibe_{idx}"):
+            label = vibe_labels.get(vibe, vibe.title())
+            if st.button(f"{label}", key=f"vibe_{idx}"):
                 st.session_state.preferences["vibe"] = vibe
                 st.session_state.step = 3
                 st.rerun()
 
 def show_budget_step(recommender):
-    st.header("💰 What's Your Budget?")
+    st.header("What's Your Budget?")
+    st.markdown("---")
     
     col1, col2 = st.columns(2)
     
@@ -515,14 +534,15 @@ def show_budget_step(recommender):
         st.rerun()
 
 def show_category_step(recommender):
-    st.header("💎 Preferred Category?")
+    st.header("Preferred Category?")
+    st.markdown("---")
     
     categories = recommender.get_categories()
     
     col1, col2, col3 = st.columns(3)
     
     # Option to skip
-    if st.button("🚀 Show All Categories (Skip)"):
+    if st.button("Show All Categories (Skip)"):
         st.session_state.preferences["category"] = None
         st.session_state.step = 4
         st.rerun()
@@ -538,7 +558,8 @@ def show_category_step(recommender):
                 st.rerun()
 
 def show_recommendations(recommender):
-    st.header("🎁 Your Personalized Recommendations")
+    st.header("Your Personalized Recommendations")
+    st.markdown("---")
     
     prefs = st.session_state.preferences
     
@@ -567,7 +588,7 @@ def show_recommendations(recommender):
     display_results(results, recommender)
     
     # Reset button
-    if st.button("🔄 Start Over"):
+    if st.button("Start Over"):
         st.session_state.step = 0
         st.session_state.preferences = {}
         st.rerun()
@@ -590,9 +611,9 @@ def display_results(results, recommender):
             if i + idx < len(results):
                 product = results[i + idx]
                 with col:
-                    st.markdown('<div class="product-card">', unsafe_allow_html=True)
                     
-                    st.subheader(f"🏆 #{product['rank']}: {product['product_name']}")
+                    st.subheader(f"#{product['rank']}: {product['product_name']}")
+                    st.markdown("---")
                     
                     if product.get("collection"):
                         st.write(f"**Collection:** {product['collection']}")
@@ -602,16 +623,16 @@ def display_results(results, recommender):
                     
                     # Display vibes
                     if product.get("vibes"):
-                        vibe_emojis = {
-                            "royal": "👑", "traditional": "🏛️", "modern": "✨", "elegant": "💎",
-                            "bohemian": "🌺", "vintage": "📜", "glamorous": "⭐", "minimalist": "○",
-                            "statement": "💥", "festive": "🎉", "romantic": "💕", "professional": "💼",
-                            "casual": "👕", "luxury": "💎", "artistic": "🎨"
+                        vibe_labels = {
+                            "royal": "Royal", "traditional": "Traditional", "modern": "Modern", "elegant": "Elegant",
+                            "bohemian": "Bohemian", "vintage": "Vintage", "glamorous": "Glamorous", "minimalist": "Minimalist",
+                            "statement": "Statement", "festive": "Festive", "romantic": "Romantic", "professional": "Professional",
+                            "casual": "Casual", "luxury": "Luxury", "artistic": "Artistic"
                         }
                         vibe_display = []
                         for vibe in product["vibes"][:3]:  # Show top 3 vibes
-                            emoji = vibe_emojis.get(vibe, "💎")
-                            vibe_display.append(f"{emoji} {vibe.title()}")
+                            label = vibe_labels.get(vibe, vibe.title())
+                            vibe_display.append(f"{label}")
                         st.write(f"**Vibes:** {', '.join(vibe_display)}")
                     
                     if product.get("price"):
@@ -623,7 +644,7 @@ def display_results(results, recommender):
                     # Display celebrity inspiration if available
                     if product.get("celebrity_inspiration"):
                         celeb_info = product["celebrity_inspiration"]
-                        st.write(f"**✨ Inspired by:** {celeb_info['celebrity'].replace('_', ' ').title()}")
+                        st.write(f"**Inspired by:** {celeb_info['celebrity'].replace('_', ' ').title()}")
                         st.write(f"*{celeb_info['style_description']}*")
                     
                     # Display image if available
@@ -647,12 +668,11 @@ def display_results(results, recommender):
                                 font-weight: bold;
                                 text-align: center;
                                 width: 100%;
-                            ">🛍️ View on Evol Jewels</a>
+                            ">View on Evol Jewels</a>
                         </div>
                         """, unsafe_allow_html=True)
                     # No button shown for products without valid URLs (like Elite Necklace)
                     
-                    st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
