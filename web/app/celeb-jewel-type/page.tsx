@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import React from "react";  
+import React from "react";
+import Card from "@/components/card";
 import { useRouter } from "next/navigation";
 
 export default function EvolStudioLanding() {
   const router = useRouter();
-
   const leftImages = [
     "/jewel1.png",
     "/jewel2.png",
@@ -49,43 +49,57 @@ export default function EvolStudioLanding() {
           </div>
 
           {/* Center Content */}
-          <div className="flex-1 flex items-center justify-center px-8">
-            <div className="max-w-2xl w-full text-center">
+          {/* Center Content */}
+          <div className="flex-1 flex items-center justify-center ">
+            <div className=" w-full text-center">
               {/* Logo */}
-              <div className="mb-6">
-                <Image
-                  src="/evollogo.png"
-                  alt="Evol Studio Logo"
-                  width={150}
-                  height={60}
-                  className="mx-auto"
-                />
+              <div>
+                <div className="mb-6">
+                                <Image
+                                  src="/evollogo.png"
+                                  alt="Evol Studio Logo"
+                                  width={150}
+                                  height={60}
+                                  className="mx-auto"
+                                />
+                              </div>
               </div>
 
-              {/* Main Heading */}
-              <h2 className="text-8xl  text-[#BA9456] mb-2 leading-tight jakarta">
-                Welcome to
-                <br />
-                Evol Studio
+              {/* Heading */}
+              <h1 className="text-4xl playfair  mb-4">
+                Let's find the Perfect jewelry for you!
+              </h1>
+
+              {/* Question */}
+              <h2 className="text-4xl h-15 w-full bg-white text-[#BA9456] jakarta font-medium mb-4 flex items-center justify-center">
+                What kind of jewelry are you looking for ?
               </h2>
 
-              {/* Subtitle */}
-              <p className="text-5xl text-[#BA9456] mb-8 font-light playfair">
-                Let's find the jewelry that feels
-                <br />
-                like you
-              </p>
+              {/* Cards Grid */}
+            <div className="flex justify-center items-center mb-4 p-20">
+                <div className="flex flex-col gap-6 items-center">
+                    <div className="flex gap-6">
+                    <Card image="/celeb-jewel-type/classic.png" title="Classic" alt="Rings" />
+                    <Card image="/celeb-jewel-type/dailywear.png" title="Dailywear" alt="Earrings" />
+                    <Card image="/celeb-jewel-type/fancy.png" title="Fancy" alt="Pendants" />
+                    </div>
 
-              {/* Buttons */}
-              <div className="flex flex-col gap-4 items-center">
-                <button
-                  onClick={() => router.push("/occasion")}
-                  className="bg-[#BA9456] text-white px-34 py-6 rounded-full text-2xl font-medium  transition-all duration-300 shadow-lg hover:scale-105 border-2 border-white"
-                >
-                  Start here
+                   
+                </div>
+            </div>
+s
+
+              {/* Navigation Buttons */}
+              <div className="flex items-center justify-center gap-50">
+                <button onClick={()=>router.push("/celeb-wear")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
+                  Back
                 </button>
-                <button onClick={()=>router.push("/celeb-matching")} className="bg-white border-2 border-[#b8935f] text-[#b8935f] px-26 py-4 rounded-full text-xl font-medium hover:bg-[#b8935f] hover:text-white transition-all duration-300 hover:scale-105">
-                  Match with Celeb
+                <div className="text-lg border-2 bg-white border-[#BA9456] px-12 py-3 rounded-3xl">
+                  Step <span className="font-semibold">4</span> of{" "}
+                  <span className="font-semibold">6</span>
+                </div>
+                 <button onClick={()=>router.push("/suggestions")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
+                  Next
                 </button>
               </div>
             </div>
