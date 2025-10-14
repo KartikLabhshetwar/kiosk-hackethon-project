@@ -22,6 +22,10 @@ const CORS_ORIGINS = NODE_ENV === 'production'
 const DATA_PATH = process.env['DATA_PATH'] || path.join(process.cwd(), '..', 'indexed_data');
 const MODEL_PATH = process.env['MODEL_PATH'] || path.join(process.cwd(), '..', 'models');
 
+// Validate data path exists
+console.log('Data path:', DATA_PATH);
+console.log('Model path:', MODEL_PATH);
+
 // ============================================================================
 // Server Configuration
 // ============================================================================
