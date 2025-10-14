@@ -1,11 +1,17 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@/components/card";
 import { useRouter } from "next/navigation";
+import { getVibes, searchByVibe } from "@/lib/api/services";
 
 export default function EvolStudioLanding() {
   const router = useRouter();
+  const [selectedVibe, setSelectedVibe] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [vibes, setVibes] = useState<string[]>([]);
+  const [loadingVibes, setLoadingVibes] = useState(true);
+  
   const leftImages = [
     "/jewel1.png",
     "/jewel2.png",
@@ -19,6 +25,65 @@ export default function EvolStudioLanding() {
     "/jewel3.png",
     "/jewel4.png",
   ];
+
+  // Load vibes from backend
+  useEffect(() => {
+    const loadVibes = async () => {
+      try {
+        setLoadingVibes(true);
+        const vibeList = await getVibes();
+        setVibes(vibeList);
+      } catch (error) {
+        console.error('Failed to load vibes:', error);
+        // Fallback to static vibes
+        setVibes([
+          "traditional",
+          "professional", 
+          "festive",
+          "casual",
+          "vintage",
+          "elegant",
+          "modern",
+          "bohemian"
+        ]);
+      } finally {
+        setLoadingVibes(false);
+      }
+    };
+
+    loadVibes();
+  }, []);
+
+  const handleVibeSelect = async (vibe: string) => {
+    setSelectedVibe(vibe);
+    setIsLoading(true);
+    console.log('Selected vibe:', vibe);
+    
+    // Get vibe-based recommendations from backend
+    try {
+      const recommendations = await searchByVibe({
+        vibe: vibe,
+        top_k: 5
+      });
+      console.log('Vibe-based recommendations:', recommendations);
+      // Store recommendations for later use
+      localStorage.setItem('vibeRecommendations', JSON.stringify(recommendations));
+    } catch (error) {
+      console.error('Failed to get vibe-based recommendations:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleNext = () => {
+    if (selectedVibe) {
+      // Store the selected vibe in localStorage for later use
+      localStorage.setItem('selectedVibe', selectedVibe);
+      router.push('/type');
+    } else {
+      alert('Please select a vibe first!');
+    }
+  };
 
   return (
     <div className="w-full">
@@ -74,21 +139,88 @@ export default function EvolStudioLanding() {
               <h2 className="text-4xl h-15 w-full bg-white text-[#BA9456] jakarta font-medium mb-4 flex items-center justify-center">
                 What Vibe are you looking for ?
               </h2>
+              
+              {/* Selection Feedback */}
+              {selectedVibe && (
+                <div className="mb-4 text-center">
+                  <p className="text-lg text-[#BA9456] font-medium">
+                    Great choice! {selectedVibe.charAt(0).toUpperCase() + selectedVibe.slice(1)} vibe selected
+                  </p>
+                  {isLoading && (
+                    <div className="mt-2">
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#BA9456] mx-auto"></div>
+                      <p className="text-sm text-gray-600 mt-1">Finding perfect recommendations...</p>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Cards Grid */}
             <div className="flex justify-center items-center mb-4">
-                <div className="flex flex-col gap-6 items-center">
+                {loadingVibes ? (
+                  <div className="text-center">
+                    <div className="text-2xl text-[#BA9456] mb-4">Loading vibes...</div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#BA9456] mx-auto"></div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-6 items-center">
                     <div className="flex gap-6">
-                    <Card image="/vibe/traditional.png" title="Traditional" alt="Wedding rings" />
-                    <Card image="/vibe/professional.png" title="Professional" alt="Engagement ring" />
-                    <Card image="/vibe/festive.png" title="Festive" alt="Casual jewelry" />
+                      {vibes.slice(0, 3).map((vibe) => {
+                        const vibeImageMap: { [key: string]: string } = {
+                          'traditional': '/vibe/traditional.png',
+                          'professional': '/vibe/professional.png',
+                          'festive': '/vibe/festive.png',
+                          'casual': '/vibe/casual.png',
+                          'vintage': '/vibe/traditional.png',
+                          'elegant': '/vibe/traditional.png',
+                          'modern': '/vibe/professional.png',
+                          'bohemian': '/vibe/casual.png'
+                        };
+                        const image = vibeImageMap[vibe] || '/vibe/traditional.png';
+                        const displayName = vibe.charAt(0).toUpperCase() + vibe.slice(1);
+                        
+                        return (
+                          <Card
+                            key={vibe}
+                            image={image}
+                            title={displayName}
+                            alt={`${displayName} vibe`}
+                            onClick={() => handleVibeSelect(vibe)}
+                            isSelected={selectedVibe === vibe}
+                          />
+                        );
+                      })}
                     </div>
 
                     <div className="flex gap-6">
-                    <Card image="/vibe/casual.png" title="Casual" alt="Party jewelry" />
-                    <Card image="/vibe/traditional.png" title="Vintage" alt="Casual jewelry" />
+                      {vibes.slice(3, 5).map((vibe) => {
+                        const vibeImageMap: { [key: string]: string } = {
+                          'traditional': '/vibe/traditional.png',
+                          'professional': '/vibe/professional.png',
+                          'festive': '/vibe/festive.png',
+                          'casual': '/vibe/casual.png',
+                          'vintage': '/vibe/traditional.png',
+                          'elegant': '/vibe/traditional.png',
+                          'modern': '/vibe/professional.png',
+                          'bohemian': '/vibe/casual.png'
+                        };
+                        const image = vibeImageMap[vibe] || '/vibe/traditional.png';
+                        const displayName = vibe.charAt(0).toUpperCase() + vibe.slice(1);
+                        
+                        return (
+                          <Card
+                            key={vibe}
+                            image={image}
+                            title={displayName}
+                            alt={`${displayName} vibe`}
+                            onClick={() => handleVibeSelect(vibe)}
+                            isSelected={selectedVibe === vibe}
+                          />
+                        );
+                      })}
                     </div>
-                </div>
+                  </div>
+                )}
             </div>
               
 
@@ -101,7 +233,15 @@ export default function EvolStudioLanding() {
                   Step <span className="font-semibold">3</span> of{" "}
                   <span className="font-semibold">6</span>
                 </div>
-                 <button onClick={()=>router.push("/type")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
+                 <button 
+                   onClick={handleNext}
+                   className={`px-12 py-2 text-xl font-semibold border-2 rounded-full hover:scale-105 transition-transform duration-500 ${
+                     selectedVibe 
+                       ? 'bg-[#BA9456] text-white border-[#BA9456]' 
+                       : 'bg-white text-[#BA9456] border-[#BA9456] opacity-50 cursor-not-allowed'
+                   }`}
+                   disabled={!selectedVibe}
+                 >
                   Next
                 </button>
               </div>

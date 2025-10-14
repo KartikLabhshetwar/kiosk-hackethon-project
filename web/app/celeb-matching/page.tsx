@@ -1,11 +1,16 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@/components/card2";
 import { useRouter } from "next/navigation";
+import { getCelebrities } from "@/lib/api/services";
 
 export default function EvolStudioLanding() {
   const router = useRouter();
+  const [celebrities, setCelebrities] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const leftImages = [
     "/jewel1.png",
     "/jewel2.png",
@@ -19,6 +24,34 @@ export default function EvolStudioLanding() {
     "/jewel3.png",
     "/jewel4.png",
   ];
+
+  // Load celebrities from backend
+  useEffect(() => {
+    const loadCelebrities = async () => {
+      try {
+        setLoading(true);
+        const celebList = await getCelebrities();
+        setCelebrities(celebList);
+        setError(null);
+      } catch (err) {
+        console.error('Failed to load celebrities:', err);
+        setError('Failed to load celebrities. Please try again.');
+        // Fallback to static data
+        setCelebrities([
+          "alia bhatt",
+          "anushka sharma", 
+          "deepika padukone",
+          "katrina kaif",
+          "kareena kapoor",
+          "kangana ranaut"
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCelebrities();
+  }, []);
 
   return (
     <div className="w-full">
@@ -77,19 +110,79 @@ export default function EvolStudioLanding() {
 
               {/* Cards Grid */}
             <div className="flex justify-center items-center mb-4">
-                <div className="flex flex-col gap-6 items-center">
+                {loading ? (
+                  <div className="text-center">
+                    <div className="text-2xl text-[#BA9456] mb-4">Loading celebrities...</div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#BA9456] mx-auto"></div>
+                  </div>
+                ) : error ? (
+                  <div className="text-center">
+                    <div className="text-xl text-red-600 mb-4">{error}</div>
+                    <div className="text-lg text-gray-600">Using fallback data</div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-6 items-center">
                     <div className="flex gap-6">
-                    <Card image="/celebs/aliabhatt.jpg" title="Alia" alt="Wedding rings" />
-                    <Card image="/celebs/anushka.jpg" title="Anushka" alt="Engagement ring" />
-                    <Card image="/celebs/deepika.jpg" title="Deepika" alt="Casual jewelry" />
-                    <Card image="/celebs/katrina.jpg" title="Katrina" alt="Casual jewelry" />
+                      {celebrities.slice(0, 4).map((celebrity, index) => {
+                        const celebName = celebrity.replace(/\s+/g, '').toLowerCase();
+                        const imageMap: { [key: string]: string } = {
+                          'aliabhatt': '/celebs/aliabhatt.jpg',
+                          'anushkasharma': '/celebs/anushka.jpg',
+                          'deepikapadukone': '/celebs/deepika.jpg',
+                          'katrinakaif': '/celebs/katrina.jpg',
+                          'kareenakapoor': '/celebs/kareena.png',
+                          'kanganaranaut': '/celebs/kangana.jpg',
+                          'priyankachopra': '/celebs/priyanka.jpg',
+                          'sonamkapoor': '/celebs/sonam.jpg'
+                        };
+                        const image = imageMap[celebName] || '/celebs/aliabhatt.jpg';
+                        const displayName = celebrity.split(' ').map(word => 
+                          word.charAt(0).toUpperCase() + word.slice(1)
+                        ).join(' ');
+                        
+                        return (
+                          <Card 
+                            key={celebrity} 
+                            image={image} 
+                            title={displayName} 
+                            alt={`${displayName} style`} 
+                          />
+                        );
+                      })}
                     </div>
 
-                    <div className="flex gap-6">
-                    <Card image="/celebs/kareena.png" title="Kareena" alt="Party jewelry" />
-                    <Card image="/celebs/kangana.jpg" title="Kangana" alt="Casual jewelry" />
-                    </div>
-                </div>
+                    {celebrities.length > 4 && (
+                      <div className="flex gap-6">
+                        {celebrities.slice(4, 6).map((celebrity) => {
+                          const celebName = celebrity.replace(/\s+/g, '').toLowerCase();
+                          const imageMap: { [key: string]: string } = {
+                            'aliabhatt': '/celebs/aliabhatt.jpg',
+                            'anushkasharma': '/celebs/anushka.jpg',
+                            'deepikapadukone': '/celebs/deepika.jpg',
+                            'katrinakaif': '/celebs/katrina.jpg',
+                            'kareenakapoor': '/celebs/kareena.png',
+                            'kanganaranaut': '/celebs/kangana.jpg',
+                            'priyankachopra': '/celebs/priyanka.jpg',
+                            'sonamkapoor': '/celebs/sonam.jpg'
+                          };
+                          const image = imageMap[celebName] || '/celebs/aliabhatt.jpg';
+                          const displayName = celebrity.split(' ').map(word => 
+                            word.charAt(0).toUpperCase() + word.slice(1)
+                          ).join(' ');
+                          
+                          return (
+                            <Card 
+                              key={celebrity} 
+                              image={image} 
+                              title={displayName} 
+                              alt={`${displayName} style`} 
+                            />
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
             </div>
 
 
