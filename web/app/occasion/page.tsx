@@ -3,9 +3,11 @@ import Image from "next/image";
 import React from "react";
 import Card from "@/components/card";
 import { useRouter } from "next/navigation";
+import { usePreferences } from "@/lib/context";
 
 export default function EvolStudioLanding() {
   const router = useRouter();
+  const { setOccasion } = usePreferences();
   const leftImages = [
     "/jewel1.png",
     "/jewel2.png",
@@ -78,22 +80,30 @@ export default function EvolStudioLanding() {
               {/* Cards Grid */}
               <div className="flex justify-center items-center mb-4">
                 <div className="grid grid-cols-2 gap-6">
-                  <Card
-                    image="/occasion/wedding.png"
-                    title="Wedding"
-                    alt="Wedding rings"
-                  />
-                  <Card
-                    image="/occasion/engagement.png"
-                    title="Engagement"
-                    alt="Engagement ring"
-                  />
-                  <Card
-                    image="/occasion/casual.png"
-                    title="Casual"
-                    alt="Casual jewelry"
-                  />
-                  <Card image="/occasion/party.png" title="Party" alt="Party jewelry" />
+                  <div onClick={() => { setOccasion("wedding"); router.push("/budget"); }}>
+                    <Card
+                      image="/occasion/wedding.png"
+                      title="Wedding"
+                      alt="Wedding rings"
+                    />
+                  </div>
+                  <div onClick={() => { setOccasion("engagement"); router.push("/budget"); }}>
+                    <Card
+                      image="/occasion/engagement.png"
+                      title="Engagement"
+                      alt="Engagement ring"
+                    />
+                  </div>
+                  <div onClick={() => { setOccasion("casual"); router.push("/budget"); }}>
+                    <Card
+                      image="/occasion/casual.png"
+                      title="Casual"
+                      alt="Casual jewelry"
+                    />
+                  </div>
+                  <div onClick={() => { setOccasion("party"); router.push("/budget"); }}>
+                    <Card image="/occasion/party.png" title="Party" alt="Party jewelry" />
+                  </div>
                 </div>
               </div>
 

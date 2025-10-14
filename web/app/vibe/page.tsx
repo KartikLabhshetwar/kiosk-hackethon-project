@@ -3,9 +3,19 @@ import Image from "next/image";
 import React from "react";
 import Card from "@/components/card";
 import { useRouter } from "next/navigation";
+import { usePreferences } from "@/lib/context";
+import { useFormattedVibes } from "@/lib/hooks";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default function EvolStudioLanding() {
   const router = useRouter();
+  const { setVibe } = usePreferences();
+  const { data: vibes, isLoading } = useFormattedVibes();
+  
+  const handleVibeSelect = (vibeId: string) => {
+    setVibe(vibeId);
+    router.push("/type");
+  };
   const leftImages = [
     "/jewel1.png",
     "/jewel2.png",
@@ -76,19 +86,54 @@ export default function EvolStudioLanding() {
               </h2>
 
               {/* Cards Grid */}
-            <div className="flex justify-center items-center mb-4">
-                <div className="flex flex-col gap-6 items-center">
+            <div className="flex justify-center items-center mb-4 min-h-80">
+                {isLoading ? (
+                  <LoadingSpinner message="Loading vibes..." />
+                ) : (
+                  <div className="flex flex-col gap-6 items-center">
                     <div className="flex gap-6">
-                    <Card image="/vibe/traditional.png" title="Traditional" alt="Wedding rings" />
-                    <Card image="/vibe/professional.png" title="Professional" alt="Engagement ring" />
-                    <Card image="/vibe/festive.png" title="Festive" alt="Casual jewelry" />
+                      {vibes.slice(0, 3).map((vibe) => {
+                        const imageMap: Record<string, string> = {
+                          traditional: "/vibe/traditional.png",
+                          professional: "/vibe/professional.png",
+                          festive: "/vibe/festive.png",
+                          casual: "/vibe/casual.png",
+                          vintage: "/vibe/vintage.png",
+                        };
+                        return (
+                          <div key={vibe.id} onClick={() => handleVibeSelect(vibe.id)}>
+                            <Card 
+                              image={imageMap[vibe.id] || "/vibe/traditional.png"} 
+                              title={vibe.name} 
+                              alt={vibe.name} 
+                            />
+                          </div>
+                        );
+                      })}
                     </div>
 
                     <div className="flex gap-6">
-                    <Card image="/vibe/casual.png" title="Casual" alt="Party jewelry" />
-                    <Card image="/vibe/traditional.png" title="Vintage" alt="Casual jewelry" />
+                      {vibes.slice(3, 5).map((vibe) => {
+                        const imageMap: Record<string, string> = {
+                          traditional: "/vibe/traditional.png",
+                          professional: "/vibe/professional.png",
+                          festive: "/vibe/festive.png",
+                          casual: "/vibe/casual.png",
+                          vintage: "/vibe/vintage.png",
+                        };
+                        return (
+                          <div key={vibe.id} onClick={() => handleVibeSelect(vibe.id)}>
+                            <Card 
+                              image={imageMap[vibe.id] || "/vibe/traditional.png"} 
+                              title={vibe.name} 
+                              alt={vibe.name} 
+                            />
+                          </div>
+                        );
+                      })}
                     </div>
-                </div>
+                  </div>
+                )}
             </div>
               
 

@@ -1,11 +1,37 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Card from "@/components/card";
 import { useRouter } from "next/navigation";
+import { usePreferences } from "@/lib/context";
+import { useCategories } from "@/lib/hooks";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default function EvolStudioLanding() {
   const router = useRouter();
+  const { setCategory } = usePreferences();
+  const { data: categories, isLoading } = useCategories();
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    setCategory(category);
+  };
+
+  const handleNext = () => {
+    if (selectedCategory) {
+      router.push("/suggestions");
+    }
+  };
+
+  // Map display names to API category names
+  const categoryMap: Record<string, string> = {
+    "Rings": "ring",
+    "Earrings": "earrings",
+    "Pendants": "pendant",
+    "Bracelets": "bracelet",
+    "Necklaces": "necklace"
+  };
   const leftImages = [
     "/jewel1.png",
     "/jewel2.png",
@@ -76,19 +102,48 @@ export default function EvolStudioLanding() {
               </h2>
 
               {/* Cards Grid */}
-            <div className="flex justify-center items-center mb-4">
-                <div className="flex flex-col gap-6 items-center">
+            <div className="flex justify-center items-center mb-4 min-h-80">
+                {isLoading ? (
+                  <LoadingSpinner message="Loading jewelry types..." />
+                ) : (
+                  <div className="flex flex-col gap-6 items-center">
                     <div className="flex gap-6">
-                    <Card image="/jewel-types/ring.png" title="Rings" alt="Rings" />
-                    <Card image="/jewel-types/earrings.png" title="Earrings" alt="Earrings" />
-                    <Card image="/jewel-types/pendant.png" title="Pendants" alt="Pendants" />
+                      <div 
+                        onClick={() => handleCategorySelect(categoryMap["Rings"])}
+                        className={`cursor-pointer ${selectedCategory === categoryMap["Rings"] ? "ring-4 ring-[#BA9456] rounded-2xl" : ""}`}
+                      >
+                        <Card image="/jewel-types/ring.png" title="Rings" alt="Rings" />
+                      </div>
+                      <div 
+                        onClick={() => handleCategorySelect(categoryMap["Earrings"])}
+                        className={`cursor-pointer ${selectedCategory === categoryMap["Earrings"] ? "ring-4 ring-[#BA9456] rounded-2xl" : ""}`}
+                      >
+                        <Card image="/jewel-types/earrings.png" title="Earrings" alt="Earrings" />
+                      </div>
+                      <div 
+                        onClick={() => handleCategorySelect(categoryMap["Pendants"])}
+                        className={`cursor-pointer ${selectedCategory === categoryMap["Pendants"] ? "ring-4 ring-[#BA9456] rounded-2xl" : ""}`}
+                      >
+                        <Card image="/jewel-types/pendant.png" title="Pendants" alt="Pendants" />
+                      </div>
                     </div>
 
                     <div className="flex gap-6">
-                    <Card image="/jewel-types/bracelets.png" title="Bracelets" alt="Bracelets" />
-                    <Card image="/jewel-types/necklace.png" title="Necklaces" alt="Necklaces" />
+                      <div 
+                        onClick={() => handleCategorySelect(categoryMap["Bracelets"])}
+                        className={`cursor-pointer ${selectedCategory === categoryMap["Bracelets"] ? "ring-4 ring-[#BA9456] rounded-2xl" : ""}`}
+                      >
+                        <Card image="/jewel-types/bracelets.png" title="Bracelets" alt="Bracelets" />
+                      </div>
+                      <div 
+                        onClick={() => handleCategorySelect(categoryMap["Necklaces"])}
+                        className={`cursor-pointer ${selectedCategory === categoryMap["Necklaces"] ? "ring-4 ring-[#BA9456] rounded-2xl" : ""}`}
+                      >
+                        <Card image="/jewel-types/necklace.png" title="Necklaces" alt="Necklaces" />
+                      </div>
                     </div>
-                </div>
+                  </div>
+                )}
             </div>
 
 
@@ -98,10 +153,18 @@ export default function EvolStudioLanding() {
                   Back
                 </button>
                 <div className="text-lg border-2 bg-white border-[#BA9456] px-12 py-3 rounded-3xl">
-                  Step <span className="font-semibold">2</span> of{" "}
+                  Step <span className="font-semibold">4</span> of{" "}
                   <span className="font-semibold">6</span>
                 </div>
-                 <button onClick={()=>router.push("/suggestions")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
+                <button 
+                  onClick={handleNext}
+                  disabled={!selectedCategory}
+                  className={`px-12 py-2 text-xl font-semibold rounded-full transition-all duration-500 ${
+                    selectedCategory 
+                      ? "bg-white border-2 border-[#BA9456] text-[#BA9456] hover:scale-105" 
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
+                >
                   Next
                 </button>
               </div>

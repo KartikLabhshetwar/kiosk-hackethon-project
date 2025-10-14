@@ -4,9 +4,16 @@ import React from "react";
 import Card from "@/components/card";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { usePreferences } from "@/lib/context";
 
 export default function EvolStudioLanding() {
-    const router=useRouter()
+    const router = useRouter();
+    const { setBudget } = usePreferences();
+    
+    const handleBudgetSelect = (min: number, max: number) => {
+      setBudget(min, max);
+      router.push("/vibe");
+    };
   const leftImages = [
     "/jewel1.png",
     "/jewel2.png",
@@ -81,17 +88,25 @@ export default function EvolStudioLanding() {
               {/* Cards Grid */}
               <div className="flex justify-center items-center mb-4 min-h-80">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="cursor-pointer text-[#BA9456] flex flex-col items-center justify-center p-4 bg-white border-2 border-[#BA9456] rounded-2xl hover:scale-105 transition-transform duration-300 text-2xl font-normal">
-                    Under ₹1,00,000
+                  <div 
+                    onClick={() => handleBudgetSelect(50000, 100000)}
+                    className="cursor-pointer text-[#BA9456] flex flex-col items-center justify-center p-4 bg-white border-2 border-[#BA9456] rounded-2xl hover:scale-105 transition-transform duration-300 text-2xl font-normal">
+                    ₹50k - ₹1L
                   </div>
-                  <div className="cursor-pointer text-[#BA9456] flex flex-col items-center justify-center p-4 bg-white border-2 border-[#BA9456] rounded-2xl hover:scale-105 transition-transform duration-300 text-2xl font-normal">
-                    Under ₹2,00,000
+                  <div 
+                    onClick={() => handleBudgetSelect(100000, 200000)}
+                    className="cursor-pointer text-[#BA9456] flex flex-col items-center justify-center p-4 bg-white border-2 border-[#BA9456] rounded-2xl hover:scale-105 transition-transform duration-300 text-2xl font-normal">
+                    ₹1L - ₹2L
                   </div>
-                  <div className="cursor-pointer text-[#BA9456] flex flex-col items-center justify-center p-4 bg-white border-2 border-[#BA9456] rounded-2xl hover:scale-105 transition-transform duration-300 text-2xl font-normal">
-                    Under ₹3,00,000
+                  <div 
+                    onClick={() => handleBudgetSelect(200000, 500000)}
+                    className="cursor-pointer text-[#BA9456] flex flex-col items-center justify-center p-4 bg-white border-2 border-[#BA9456] rounded-2xl hover:scale-105 transition-transform duration-300 text-2xl font-normal">
+                    ₹2L - ₹5L
                   </div>
-                  <div className="cursor-pointer text-[#BA9456] flex flex-col items-center justify-center p-4 bg-white border-2 border-[#BA9456] rounded-2xl hover:scale-105 transition-transform duration-300 text-2xl font-normal">
-                    Under ₹4,00,000
+                  <div 
+                    onClick={() => handleBudgetSelect(500000, 1000000)}
+                    className="cursor-pointer text-[#BA9456] flex flex-col items-center justify-center p-4 bg-white border-2 border-[#BA9456] rounded-2xl hover:scale-105 transition-transform duration-300 text-2xl font-normal">
+                    ₹5L - ₹10L
                   </div>
                   
                 </div>

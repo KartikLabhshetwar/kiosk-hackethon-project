@@ -1,11 +1,18 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Card from "@/components/card2";
 import { useRouter } from "next/navigation";
+import { usePreferences } from "@/lib/context";
+import { useFormattedCelebrities } from "@/lib/hooks";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default function EvolStudioLanding() {
   const router = useRouter();
+  const { setCelebrity } = usePreferences();
+  const { data: celebrities, isLoading } = useFormattedCelebrities();
+  const [selectedCeleb, setSelectedCeleb] = useState<string | null>(null);
+  
   const leftImages = [
     "/jewel1.png",
     "/jewel2.png",
@@ -19,6 +26,27 @@ export default function EvolStudioLanding() {
     "/jewel3.png",
     "/jewel4.png",
   ];
+
+  const handleCelebSelect = (celebId: string) => {
+    setSelectedCeleb(celebId);
+    setCelebrity(celebId);
+  };
+
+  const handleNext = () => {
+    if (selectedCeleb) {
+      router.push("/celeb-wear");
+    }
+  };
+
+  // Celebrity image mapping
+  const celebImageMap: Record<string, string> = {
+    "alia_bhatt": "/celebs/aliabhatt.jpg",
+    "anushka_sharma": "/celebs/anushka.jpg",
+    "deepika_padukone": "/celebs/deepika.jpg",
+    "katrina_kaif": "/celebs/katrina.jpg",
+    "kareena_kapoor": "/celebs/kareena.png",
+    "kangana_ranaut": "/celebs/kangana.jpg",
+  };
 
   return (
     <div className="w-full">
@@ -49,20 +77,19 @@ export default function EvolStudioLanding() {
           </div>
 
           {/* Center Content */}
-          {/* Center Content */}
           <div className="flex-1 flex items-center justify-center ">
             <div className=" w-full text-center">
               {/* Logo */}
               <div>
                 <div className="mb-6">
-                                <Image
-                                  src="/evollogo.png"
-                                  alt="Evol Studio Logo"
-                                  width={150}
-                                  height={70}
-                                  className="mx-auto"
-                                />
-                              </div>
+                  <Image
+                    src="/evollogo.png"
+                    alt="Evol Studio Logo"
+                    width={150}
+                    height={70}
+                    className="mx-auto"
+                  />
+                </div>
               </div>
 
               {/* Heading */}
@@ -72,37 +99,71 @@ export default function EvolStudioLanding() {
 
               {/* Question */}
               <h2 className="text-4xl h-15 w-full bg-white text-[#BA9456] jakarta font-medium mb-4 flex items-center justify-center">
-                What Vibe are you looking for ?
+                Which Celebrity Style Inspires You?
               </h2>
 
               {/* Cards Grid */}
-            <div className="flex justify-center items-center mb-4">
-                <div className="flex flex-col gap-6 items-center">
+              <div className="flex justify-center items-center mb-4 min-h-80">
+                {isLoading ? (
+                  <LoadingSpinner message="Loading celebrities..." />
+                ) : (
+                  <div className="flex flex-col gap-6 items-center">
                     <div className="flex gap-6">
-                    <Card image="/celebs/aliabhatt.jpg" title="Alia" alt="Wedding rings" />
-                    <Card image="/celebs/anushka.jpg" title="Anushka" alt="Engagement ring" />
-                    <Card image="/celebs/deepika.jpg" title="Deepika" alt="Casual jewelry" />
-                    <Card image="/celebs/katrina.jpg" title="Katrina" alt="Casual jewelry" />
+                      {celebrities.slice(0, 4).map((celeb) => (
+                        <div 
+                          key={celeb.id}
+                          onClick={() => handleCelebSelect(celeb.id)}
+                          className={selectedCeleb === celeb.id ? "ring-4 ring-[#BA9456] rounded-2xl" : ""}
+                        >
+                          <Card 
+                            image={celebImageMap[celeb.id] || "/celebs/aliabhatt.jpg"} 
+                            title={celeb.name.split(' ')[0]} 
+                            alt={celeb.name} 
+                          />
+                        </div>
+                      ))}
                     </div>
 
                     <div className="flex gap-6">
-                    <Card image="/celebs/kareena.png" title="Kareena" alt="Party jewelry" />
-                    <Card image="/celebs/kangana.jpg" title="Kangana" alt="Casual jewelry" />
+                      {celebrities.slice(4, 6).map((celeb) => (
+                        <div 
+                          key={celeb.id}
+                          onClick={() => handleCelebSelect(celeb.id)}
+                          className={selectedCeleb === celeb.id ? "ring-4 ring-[#BA9456] rounded-2xl" : ""}
+                        >
+                          <Card 
+                            image={celebImageMap[celeb.id] || "/celebs/aliabhatt.jpg"} 
+                            title={celeb.name.split(' ')[0]} 
+                            alt={celeb.name} 
+                          />
+                        </div>
+                      ))}
                     </div>
-                </div>
-            </div>
-
+                  </div>
+                )}
+              </div>
 
               {/* Navigation Buttons */}
               <div className="flex items-center justify-center gap-50">
-                <button onClick={()=>router.push("/")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
+                <button 
+                  onClick={() => router.push("/")} 
+                  className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 "
+                >
                   Back
                 </button>
                 <div className="text-lg border-2 bg-white border-[#BA9456] px-12 py-3 rounded-3xl">
                   Step <span className="font-semibold">1</span> of{" "}
                   <span className="font-semibold">6</span>
                 </div>
-                 <button onClick={()=>router.push("/celeb-wear")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
+                <button 
+                  onClick={handleNext} 
+                  disabled={!selectedCeleb}
+                  className={`px-12 py-2 text-xl font-semibold rounded-full transition-all duration-500 ${
+                    selectedCeleb 
+                      ? "bg-white border-2 border-[#BA9456] text-[#BA9456] hover:scale-105" 
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
+                >
                   Next
                 </button>
               </div>

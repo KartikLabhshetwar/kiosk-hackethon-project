@@ -96,7 +96,7 @@ def get_recommender():
     if recommender is None:
         try:
             print("🔄 Loading recommender...")
-            from recommender import JewelryRecommender
+            from src.recommender import JewelryRecommender
             recommender = JewelryRecommender()
             print("✅ Recommender loaded")
         except ImportError as e:
@@ -113,7 +113,7 @@ def get_celebrity_engine():
     if celebrity_engine is None:
         try:
             print("🔄 Loading celebrity engine...")
-            from celebrity_engine import CelebrityInspirationEngine
+            from src.celebrity_engine import CelebrityInspirationEngine
             celebrity_engine = CelebrityInspirationEngine()
             print("✅ Celebrity engine loaded")
         except ImportError as e:
@@ -130,7 +130,7 @@ def get_vibe_classifier():
     if vibe_classifier is None:
         try:
             print("🔄 Loading vibe classifier...")
-            from vibe_classifier import VibeClassifier
+            from src.vibe_classifier import VibeClassifier
             vibe_classifier = VibeClassifier()
             print("✅ Vibe classifier loaded")
         except ImportError as e:

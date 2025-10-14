@@ -5,8 +5,8 @@ from pathlib import Path
 from sentence_transformers import SentenceTransformer
 from typing import List, Dict, Optional
 import re
-from celebrity_engine import CelebrityInspirationEngine
-from vibe_classifier import VibeClassifier
+from src.celebrity_engine import CelebrityInspirationEngine
+from src.vibe_classifier import VibeClassifier
 
 class JewelryRecommender:
     """Core recommendation engine with vector search + filtering"""
