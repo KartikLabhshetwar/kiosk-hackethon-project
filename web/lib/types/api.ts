@@ -1,19 +1,11 @@
-/**
- * TypeScript Type Definitions
- * Type-safe API request/response structures
- */
-
-// ============================================================================
-// Product Types
-// ============================================================================
-
+// API Types for client-side operations
 export interface Product {
   id: number;
   product_name: string;
-  collection: string | null;
-  category: string | null;
-  price: number | null;
-  images: string | null;
+  collection?: string;
+  category?: string;
+  price?: number;
+  images?: string;
   description: string;
   product_url: string;
   vibes: string[];
@@ -22,51 +14,22 @@ export interface Product {
   rank?: number;
 }
 
-// ============================================================================
-// Celebrity Types
-// ============================================================================
-
-export interface CelebrityStyleData {
+export interface Celebrity {
   celebrity_name: string;
   style_description: string;
   vibes: string[];
   occasions: string[];
   keywords: string[];
-  price_range: {
-    min: number;
-    max: number;
-  };
+  price_range: { min: number; max: number };
   preferred_categories: string[];
-  products: Product[];
+  products?: Product[];
 }
-
-// ============================================================================
-// Statistics Types
-// ============================================================================
 
 export interface VibeStats {
   vibe: string;
   count: number;
   percentage: number;
 }
-
-export interface PriceRangeStats {
-  min: number;
-  max: number;
-  avg: number;
-  count: number;
-}
-
-export interface HealthStatus {
-  status: string;
-  products_loaded: number;
-  celebrities_available: number;
-  vibes_available: number;
-}
-
-// ============================================================================
-// Request Types
-// ============================================================================
 
 export interface SearchRequest {
   query: string;
@@ -92,49 +55,14 @@ export interface VibeRequest {
   top_k?: number;
 }
 
-// ============================================================================
-// User Preferences (Frontend State)
-// ============================================================================
-
-export interface UserPreferences {
+export interface Preferences {
   occasion?: string;
-  budget?: {
-    min: number;
-    max: number;
-  };
   vibe?: string;
+  budget?: { min: number; max: number };
   category?: string;
   celebrity?: string;
 }
 
-// ============================================================================
-// API Response Wrapper Types
-// ============================================================================
-
-export interface ApiResponse<T> {
-  data: T;
-  error?: string;
-  loading: boolean;
+export interface CartItem extends Product {
+  quantity: number;
 }
-
-export interface ApiError {
-  message: string;
-  status?: number;
-  code?: string;
-}
-
-// ============================================================================
-// Utility Types
-// ============================================================================
-
-export type LoadingState = 'idle' | 'loading' | 'success' | 'error';
-
-export interface PaginatedResponse<T> {
-  items: T[];
-  total: number;
-  page: number;
-  page_size: number;
-  has_next: boolean;
-  has_prev: boolean;
-}
-

@@ -3,13 +3,11 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Card from "@/components/card";
 import { useRouter } from "next/navigation";
-import { searchByVibe } from "@/lib/api/services";
+import { usePreferences } from "@/lib/context";
 
 export default function EvolStudioLanding() {
   const router = useRouter();
-  const [selectedOccasion, setSelectedOccasion] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  
+  const { setOccasion } = usePreferences();
   const leftImages = [
     "/jewel1.png",
     "/jewel2.png",
@@ -146,16 +144,30 @@ export default function EvolStudioLanding() {
               {/* Cards Grid */}
               <div className="flex justify-center items-center mb-4">
                 <div className="grid grid-cols-2 gap-6">
-                  {occasions.map((occasion) => (
+                  <div onClick={() => { setOccasion("wedding"); router.push("/budget"); }}>
                     <Card
-                      key={occasion.id}
-                      image={occasion.image}
-                      title={occasion.title}
-                      alt={occasion.alt}
-                      onClick={() => handleOccasionSelect(occasion.id)}
-                      isSelected={selectedOccasion === occasion.id}
+                      image="/occasion/wedding.png"
+                      title="Wedding"
+                      alt="Wedding rings"
                     />
-                  ))}
+                  </div>
+                  <div onClick={() => { setOccasion("engagement"); router.push("/budget"); }}>
+                    <Card
+                      image="/occasion/engagement.png"
+                      title="Engagement"
+                      alt="Engagement ring"
+                    />
+                  </div>
+                  <div onClick={() => { setOccasion("casual"); router.push("/budget"); }}>
+                    <Card
+                      image="/occasion/casual.png"
+                      title="Casual"
+                      alt="Casual jewelry"
+                    />
+                  </div>
+                  <div onClick={() => { setOccasion("party"); router.push("/budget"); }}>
+                    <Card image="/occasion/party.png" title="Party" alt="Party jewelry" />
+                  </div>
                 </div>
               </div>
 
@@ -165,8 +177,8 @@ export default function EvolStudioLanding() {
                   Back
                 </button>
                 <div className="text-lg border-2 bg-white border-[#BA9456] px-12 py-3 rounded-3xl">
-                  Step <span className="font-semibold">2</span> of{" "}
-                  <span className="font-semibold">6</span>
+                  Step <span className="font-semibold">1</span> of{" "}
+                  <span className="font-semibold">5</span>
                 </div>
                  <button 
                    onClick={handleNext}
