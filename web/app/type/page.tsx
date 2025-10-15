@@ -46,6 +46,46 @@ export default function EvolStudioLanding() {
     "/jewel4.png",
   ];
 
+  const jewelryTypes = [
+    { id: 'rings', title: 'Rings', image: '/jewel-types/ring.png', alt: 'Rings' },
+    { id: 'earrings', title: 'Earrings', image: '/jewel-types/earrings.png', alt: 'Earrings' },
+    { id: 'pendants', title: 'Pendants', image: '/jewel-types/pendant.png', alt: 'Pendants' },
+    { id: 'bracelets', title: 'Bracelets', image: '/jewel-types/bracelets.png', alt: 'Bracelets' },
+    { id: 'necklaces', title: 'Necklaces', image: '/jewel-types/necklace.png', alt: 'Necklaces' }
+  ];
+
+  const handleTypeSelect = async (typeId: string) => {
+    setSelectedType(typeId);
+    setIsLoading(true);
+    console.log('Selected jewelry type:', typeId);
+    
+    // Get type-based recommendations from backend
+    try {
+      const recommendations = await searchProducts({
+        query: typeId,
+        category: typeId,
+        top_k: 5
+      });
+      console.log('Type-based recommendations:', recommendations);
+      // Store recommendations for later use
+      localStorage.setItem('typeRecommendations', JSON.stringify(recommendations));
+    } catch (error) {
+      console.error('Failed to get type-based recommendations:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleNext = () => {
+    if (selectedType) {
+      // Store the selected type in localStorage for later use
+      localStorage.setItem('selectedType', selectedType);
+      router.push('/suggestions');
+    } else {
+      alert('Please select a jewelry type first!');
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="min-h-screen bg-[#f5f0eb] flex items-center justify-center overflow-hidden">
@@ -100,6 +140,21 @@ export default function EvolStudioLanding() {
               <h2 className="text-4xl h-15 w-full bg-white text-[#BA9456] jakarta font-medium mb-4 flex items-center justify-center">
                 What type of jewelry are you looking for ?
               </h2>
+              
+              {/* Selection Feedback */}
+              {selectedType && (
+                <div className="mb-4 text-center">
+                  <p className="text-lg text-[#BA9456] font-medium">
+                    Great choice! {jewelryTypes.find(t => t.id === selectedType)?.title} selected
+                  </p>
+                  {isLoading && (
+                    <div className="mt-2">
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#BA9456] mx-auto"></div>
+                      <p className="text-sm text-gray-600 mt-1">Finding perfect recommendations...</p>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Cards Grid */}
             <div className="flex justify-center items-center mb-4 min-h-80">

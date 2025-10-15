@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@/components/card";
 import { useRouter } from "next/navigation";
 import { usePreferences } from "@/lib/context";
@@ -29,6 +29,65 @@ export default function EvolStudioLanding() {
     "/jewel3.png",
     "/jewel4.png",
   ];
+
+  // Load vibes from backend
+  useEffect(() => {
+    const loadVibes = async () => {
+      try {
+        setLoadingVibes(true);
+        const vibeList = await getVibes();
+        setVibes(vibeList);
+      } catch (error) {
+        console.error('Failed to load vibes:', error);
+        // Fallback to static vibes
+        setVibes([
+          "traditional",
+          "professional", 
+          "festive",
+          "casual",
+          "vintage",
+          "elegant",
+          "modern",
+          "bohemian"
+        ]);
+      } finally {
+        setLoadingVibes(false);
+      }
+    };
+
+    loadVibes();
+  }, []);
+
+  const handleVibeSelect = async (vibe: string) => {
+    setSelectedVibe(vibe);
+    setIsLoading(true);
+    console.log('Selected vibe:', vibe);
+    
+    // Get vibe-based recommendations from backend
+    try {
+      const recommendations = await searchByVibe({
+        vibe: vibe,
+        top_k: 5
+      });
+      console.log('Vibe-based recommendations:', recommendations);
+      // Store recommendations for later use
+      localStorage.setItem('vibeRecommendations', JSON.stringify(recommendations));
+    } catch (error) {
+      console.error('Failed to get vibe-based recommendations:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleNext = () => {
+    if (selectedVibe) {
+      // Store the selected vibe in localStorage for later use
+      localStorage.setItem('selectedVibe', selectedVibe);
+      router.push('/type');
+    } else {
+      alert('Please select a vibe first!');
+    }
+  };
 
   return (
     <div className="w-full">
@@ -84,6 +143,21 @@ export default function EvolStudioLanding() {
               <h2 className="text-4xl h-15 w-full bg-white text-[#BA9456] jakarta font-medium mb-4 flex items-center justify-center">
                 What Vibe are you looking for ?
               </h2>
+              
+              {/* Selection Feedback */}
+              {selectedVibe && (
+                <div className="mb-4 text-center">
+                  <p className="text-lg text-[#BA9456] font-medium">
+                    Great choice! {selectedVibe.charAt(0).toUpperCase() + selectedVibe.slice(1)} vibe selected
+                  </p>
+                  {isLoading && (
+                    <div className="mt-2">
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#BA9456] mx-auto"></div>
+                      <p className="text-sm text-gray-600 mt-1">Finding perfect recommendations...</p>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Cards Grid */}
             <div className="flex justify-center items-center mb-4 min-h-80">
@@ -146,7 +220,15 @@ export default function EvolStudioLanding() {
                   Step <span className="font-semibold">3</span> of{" "}
                   <span className="font-semibold">5</span>
                 </div>
-                 <button onClick={()=>router.push("/type")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
+                 <button 
+                   onClick={handleNext}
+                   className={`px-12 py-2 text-xl font-semibold border-2 rounded-full hover:scale-105 transition-transform duration-500 ${
+                     selectedVibe 
+                       ? 'bg-[#BA9456] text-white border-[#BA9456]' 
+                       : 'bg-white text-[#BA9456] border-[#BA9456] opacity-50 cursor-not-allowed'
+                   }`}
+                   disabled={!selectedVibe}
+                 >
                   Next
                 </button>
               </div>

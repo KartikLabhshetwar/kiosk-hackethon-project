@@ -1,0 +1,96 @@
+{
+  "vibe_keywords": {
+    "royal": [
+      "royal", "heritage", "maharani", "queen", "regal", "majestic",
+      "palace", "crown", "throne", "empress", "king", "princess",
+      "noble", "aristocratic", "imperial", "sovereign", "dynasty"
+    ],
+    "traditional": [
+      "traditional", "ethnic", "cultural", "classic", "temple",
+      "heritage", "ancient", "vintage", "classical", "conventional",
+      "customary", "time-honored", "folk", "indigenous", "native"
+    ],
+    "modern": [
+      "modern", "contemporary", "sleek", "minimalist", "simple",
+      "clean", "fresh", "new", "current", "trendy", "fashionable",
+      "updated", "progressive", "innovative", "cutting-edge"
+    ],
+    "elegant": [
+      "elegant", "sophisticated", "graceful", "refined", "luxury",
+      "classy", "polished", "cultured", "tasteful", "chic",
+      "stylish", "distinguished", "noble", "premium", "exclusive"
+    ],
+    "bohemian": [
+      "boho", "bohemian", "casual", "free", "artistic", "creative",
+      "eclectic", "unconventional", "free-spirited", "hippie",
+      "natural", "organic", "handcrafted", "artisan", "rustic"
+    ],
+    "vintage": [
+      "vintage", "antique", "retro", "old", "heritage", "classic",
+      "nostalgic", "timeless", "aged", "period", "era", "historical",
+      "collectible", "rare", "authentic", "original"
+    ],
+    "glamorous": [
+      "glamorous", "glam", "glamour", "glitz", "sparkle", "shine",
+      "luxury", "opulent", "extravagant", "lavish", "rich",
+      "dazzling", "stunning", "gorgeous", "beautiful", "striking"
+    ],
+    "casual": [
+      "casual", "everyday", "comfortable", "relaxed", "informal",
+      "easy", "simple", "basic", "daily", "regular", "normal",
+      "laid-back", "chill", "effortless", "natural", "unpretentious"
+    ],
+    "festive": [
+      "festive", "celebration", "party", "holiday", "special",
+      "joyful", "merry", "cheerful", "bright", "colorful",
+      "happy", "fun", "exciting", "lively", "energetic"
+    ],
+    "professional": [
+      "professional", "business", "corporate", "formal", "office",
+      "work", "career", "executive", "polished", "refined",
+      "sophisticated", "competent", "authoritative", "confident"
+    ],
+    "romantic": [
+      "romantic", "romance", "love", "sweet", "tender", "gentle",
+      "soft", "delicate", "feminine", "graceful", "charming",
+      "enchanting", "captivating", "alluring", "mesmerizing"
+    ],
+    "bold": [
+      "bold", "daring", "brave", "confident", "strong", "powerful",
+      "striking", "dramatic", "intense", "vibrant", "vivid",
+      "eye-catching", "attention-grabbing", "commanding", "assertive"
+    ],
+    "minimalist": [
+      "minimalist", "minimal", "simple", "clean", "basic", "plain",
+      "understated", "subtle", "quiet", "calm", "peaceful",
+      "uncluttered", "streamlined", "essential", "pure"
+    ],
+    "artistic": [
+      "artistic", "creative", "artistic", "unique", "original",
+      "innovative", "imaginative", "expressive", "inspiring",
+      "thoughtful", "meaningful", "symbolic", "metaphorical"
+    ],
+    "luxurious": [
+      "luxurious", "luxury", "premium", "high-end", "exclusive",
+      "expensive", "costly", "valuable", "precious", "rare",
+      "opulent", "sumptuous", "lavish", "extravagant", "rich"
+    ]
+  },
+  "vibe_weights": {
+    "royal": 1.0,
+    "traditional": 1.0,
+    "modern": 1.0,
+    "elegant": 1.0,
+    "bohemian": 1.0,
+    "vintage": 1.0,
+    "glamorous": 1.0,
+    "casual": 1.0,
+    "festive": 1.0,
+    "professional": 1.0,
+    "romantic": 1.0,
+    "bold": 1.0,
+    "minimalist": 1.0,
+    "artistic": 1.0,
+    "luxurious": 1.0
+  }
+}
