@@ -22,6 +22,11 @@ const CORS_ORIGINS = NODE_ENV === 'production'
 const DATA_PATH = process.env['DATA_PATH'] || path.join(process.cwd(), '..', 'indexed_data');
 const MODEL_PATH = process.env['MODEL_PATH'] || path.join(process.cwd(), '..', 'models');
 
+// Fallback: if data doesn't exist in parent directory, try current directory
+const fs = require('fs');
+const actualDataPath = fs.existsSync(DATA_PATH) ? DATA_PATH : path.join(process.cwd(), 'indexed_data');
+const actualModelPath = fs.existsSync(MODEL_PATH) ? MODEL_PATH : path.join(process.cwd(), 'models');
+
 // Validate data path exists
 console.log('Data path:', DATA_PATH);
 console.log('Model path:', MODEL_PATH);
@@ -35,8 +40,8 @@ export const serverConfig: ServerConfig = {
   host: HOST,
   nodeEnv: NODE_ENV,
   corsOrigins: CORS_ORIGINS,
-  dataPath: DATA_PATH,
-  modelPath: MODEL_PATH,
+  dataPath: actualDataPath,
+  modelPath: actualModelPath,
 };
 
 // ============================================================================
@@ -70,11 +75,11 @@ export const tfConfig = {
 // ============================================================================
 
 export const filePaths = {
-  metadata: path.join(DATA_PATH, 'metadata.json'),
-  embeddings: path.join(DATA_PATH, 'embeddings.npy'),
-  faissIndex: path.join(DATA_PATH, 'faiss.index'),
-  celebrityData: path.join(DATA_PATH, 'celebrity_styles.json'),
-  vibeConfig: path.join(DATA_PATH, 'vibe_config.json'),
+  metadata: path.join(actualDataPath, 'metadata.json'),
+  embeddings: path.join(actualDataPath, 'embeddings.npy'),
+  faissIndex: path.join(actualDataPath, 'faiss.index'),
+  celebrityData: path.join(actualDataPath, 'celebrity_styles.json'),
+  vibeConfig: path.join(actualDataPath, 'vibe_config.json'),
 };
 
 // ============================================================================
@@ -120,9 +125,9 @@ export const validateConfig = (): void => {
 
   // Validate data path exists
   try {
-    require('fs').accessSync(DATA_PATH);
+    require('fs').accessSync(actualDataPath);
   } catch {
-    errors.push(`Data path does not exist: ${DATA_PATH}`);
+    errors.push(`Data path does not exist: ${actualDataPath}`);
   }
 
   // Validate required files

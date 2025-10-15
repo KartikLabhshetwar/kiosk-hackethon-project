@@ -116,9 +116,11 @@ router.post('/', async (req: Request, res: Response) => {
     }
 
     console.error('Search error:', error);
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
     res.status(500).json({
       error: 'Search failed',
-      message: error instanceof Error ? error.message : 'Unknown error'
+      message: error instanceof Error ? error.message : 'Unknown error',
+      details: process.env['NODE_ENV'] === 'development' ? (error instanceof Error ? error.stack : 'No stack trace') : undefined
     });
   }
 });
@@ -256,9 +258,11 @@ router.post('/vibe', async (req: Request, res: Response) => {
     }
 
     console.error('Vibe search error:', error);
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
     res.status(500).json({
       error: 'Vibe search failed',
-      message: error instanceof Error ? error.message : 'Unknown error'
+      message: error instanceof Error ? error.message : 'Unknown error',
+      details: process.env['NODE_ENV'] === 'development' ? (error instanceof Error ? error.stack : 'No stack trace') : undefined
     });
   }
 });
