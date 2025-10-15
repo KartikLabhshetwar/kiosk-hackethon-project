@@ -23,7 +23,7 @@ const Suggestions = () => {
         category: preferences.category,
       });
     }
-  }, []);
+  }, [preferences.occasion, preferences.vibe, preferences.budget, preferences.category, getRecommendations]);
 
   if (isLoading) {
     return (

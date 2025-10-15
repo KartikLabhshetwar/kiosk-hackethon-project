@@ -683,9 +683,12 @@
     "images": null,
     "description": "Meadow Graduation Necklace | Necklace",
     "product_url": "https://evoljewels.com/products/meadow-graduation-necklace",
-    "vibes": [],
-    "primary_vibe": "classic",
-    "vibe_scores": {}
+    "vibes": ["bohemian", "casual"],
+    "primary_vibe": "bohemian",
+    "vibe_scores": {
+      "bohemian": 0.15,
+      "casual": 0.12
+    }
   },
   {
     "id": 50,
@@ -696,9 +699,13 @@
     "images": null,
     "description": "Rainbow Tennis Necklace | Necklace",
     "product_url": "https://evoljewels.com/products/rainbow-tennis-necklace",
-    "vibes": [],
-    "primary_vibe": "classic",
-    "vibe_scores": {}
+    "vibes": ["bohemian", "colorful", "casual"],
+    "primary_vibe": "bohemian",
+    "vibe_scores": {
+      "bohemian": 0.18,
+      "colorful": 0.14,
+      "casual": 0.10
+    }
   },
   {
     "id": 51,
@@ -810,9 +817,13 @@
     "images": null,
     "description": "Ivy Necklace | Necklace",
     "product_url": "https://evoljewels.com/products/ivy-necklace",
-    "vibes": [],
-    "primary_vibe": "classic",
-    "vibe_scores": {}
+    "vibes": ["bohemian", "natural", "casual"],
+    "primary_vibe": "bohemian",
+    "vibe_scores": {
+      "bohemian": 0.16,
+      "natural": 0.13,
+      "casual": 0.11
+    }
   },
   {
     "id": 59,

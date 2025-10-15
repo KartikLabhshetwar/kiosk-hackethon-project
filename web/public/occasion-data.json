@@ -1,0 +1,154 @@
+{
+  "occasions": {
+    "wedding": {
+      "id": "wedding",
+      "name": "Wedding",
+      "image": "/occasion/wedding.png",
+      "description": "Perfect jewelry for your special wedding day",
+      "keywords": ["wedding", "bridal", "bride", "marriage", "ceremony", "engagement", "diamond", "elegant", "classic", "traditional", "romantic"],
+      "categories": ["Ring", "Necklace", "Earring", "Bracelet", "Pendant"],
+      "vibes": ["romantic", "elegant", "classic", "traditional", "luxury"],
+      "price_range": {
+        "min": 50000,
+        "max": 500000
+      },
+      "collections": ["Floral Collection", "Tribal Collection"],
+      "recommended_products": [
+        {
+          "id": 11,
+          "reason": "Perfect for wedding ceremonies with royal elegance"
+        },
+        {
+          "id": 37,
+          "reason": "Romantic heart pendant ideal for bridal jewelry"
+        },
+        {
+          "id": 39,
+          "reason": "Regal bracelet that complements wedding attire"
+        },
+        {
+          "id": 46,
+          "reason": "Classic tennis bracelet for traditional weddings"
+        },
+        {
+          "id": 56,
+          "reason": "Traditional necklace perfect for wedding ceremonies"
+        }
+      ]
+    },
+    "engagement": {
+      "id": "engagement",
+      "name": "Engagement",
+      "image": "/occasion/engagement.png",
+      "description": "The perfect engagement ring to symbolize your love",
+      "keywords": ["engagement", "proposal", "diamond", "ring", "solitaire", "halo", "romantic", "elegant"],
+      "categories": ["Ring"],
+      "vibes": ["romantic", "elegant", "classic", "luxury"],
+      "price_range": {
+        "min": 30000,
+        "max": 300000
+      },
+      "collections": [],
+      "recommended_products": [
+        {
+          "id": 12,
+          "reason": "Radiant trinity ring perfect for engagement"
+        },
+        {
+          "id": 21,
+          "reason": "Classic solitaire engagement ring"
+        },
+        {
+          "id": 22,
+          "reason": "Stunning halo ring for engagement proposals"
+        },
+        {
+          "id": 24,
+          "reason": "Bold statement ring for unique engagements"
+        }
+      ]
+    },
+    "casual": {
+      "id": "casual",
+      "name": "Casual",
+      "image": "/occasion/casual.png",
+      "description": "Beautiful jewelry for everyday wear",
+      "keywords": ["casual", "everyday", "simple", "minimalist", "comfortable", "versatile", "daily"],
+      "categories": ["Earring", "Pendant", "Bracelet", "Ring"],
+      "vibes": ["casual", "modern", "minimalist", "versatile", "bohemian"],
+      "price_range": {
+        "min": 10000,
+        "max": 100000
+      },
+      "collections": [],
+      "recommended_products": [
+        {
+          "id": 0,
+          "reason": "Simple spiral earrings perfect for daily wear"
+        },
+        {
+          "id": 29,
+          "reason": "Minimalist pendant for casual outfits"
+        },
+        {
+          "id": 33,
+          "reason": "Simple circle pendant for everyday elegance"
+        },
+        {
+          "id": 35,
+          "reason": "Elegant pendant suitable for casual wear"
+        },
+        {
+          "id": 49,
+          "reason": "Casual graduation necklace perfect for everyday wear"
+        },
+        {
+          "id": 50,
+          "reason": "Colorful tennis necklace for casual styling"
+        },
+        {
+          "id": 58,
+          "reason": "Simple ivy necklace for casual elegance"
+        }
+      ]
+    },
+    "party": {
+      "id": "party",
+      "name": "Party",
+      "image": "/occasion/party.png",
+      "description": "Make a statement with glamorous party jewelry",
+      "keywords": ["party", "celebration", "festive", "glamorous", "statement", "bold", "sparkling", "dazzling"],
+      "categories": ["Necklace", "Earring", "Bracelet", "Pendant"],
+      "vibes": ["glamorous", "statement", "festive", "bold", "luxury"],
+      "price_range": {
+        "min": 20000,
+        "max": 200000
+      },
+      "collections": ["Cosmic Collection", "Sun"],
+      "recommended_products": [
+        {
+          "id": 6,
+          "reason": "Chandelier earrings perfect for party nights"
+        },
+        {
+          "id": 43,
+          "reason": "Glamorous tennis bracelet for special events"
+        },
+        {
+          "id": 44,
+          "reason": "Sparkling cuff bracelet for party wear"
+        },
+        {
+          "id": 57,
+          "reason": "Elite necklace for glamorous party looks"
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2024-01-01",
+    "total_occasions": 4,
+    "total_recommendations": 18
+  }
+}

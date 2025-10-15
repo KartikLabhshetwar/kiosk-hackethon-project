@@ -1,0 +1,46 @@
+{
+  "wedding": {
+    "keywords": ["wedding", "bridal", "bride", "marriage", "ceremony", "engagement", "diamond", "elegant", "classic", "traditional", "romantic"],
+    "categories": ["Ring", "Necklace", "Earring", "Bracelet", "Pendant"],
+    "vibes": ["romantic", "elegant", "classic", "traditional", "luxury"],
+    "price_range": {
+      "min": 50000,
+      "max": 500000
+    },
+    "collections": ["Floral Collection", "Tribal Collection"],
+    "description": "Perfect jewelry for your special wedding day"
+  },
+  "engagement": {
+    "keywords": ["engagement", "proposal", "diamond", "ring", "solitaire", "halo", "romantic", "elegant"],
+    "categories": ["Ring"],
+    "vibes": ["romantic", "elegant", "classic", "luxury"],
+    "price_range": {
+      "min": 30000,
+      "max": 300000
+    },
+    "collections": [],
+    "description": "The perfect engagement ring to symbolize your love"
+  },
+  "casual": {
+    "keywords": ["casual", "everyday", "simple", "minimalist", "comfortable", "versatile", "daily"],
+    "categories": ["Earring", "Pendant", "Bracelet", "Ring"],
+    "vibes": ["casual", "modern", "minimalist", "versatile"],
+    "price_range": {
+      "min": 10000,
+      "max": 100000
+    },
+    "collections": [],
+    "description": "Beautiful jewelry for everyday wear"
+  },
+  "party": {
+    "keywords": ["party", "celebration", "festive", "glamorous", "statement", "bold", "sparkling", "dazzling"],
+    "categories": ["Necklace", "Earring", "Bracelet", "Pendant"],
+    "vibes": ["glamorous", "statement", "festive", "bold", "luxury"],
+    "price_range": {
+      "min": 20000,
+      "max": 200000
+    },
+    "collections": ["Cosmic Collection", "Sun"],
+    "description": "Make a statement with glamorous party jewelry"
+  }
+}

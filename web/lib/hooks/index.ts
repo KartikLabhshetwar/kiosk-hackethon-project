@@ -20,6 +20,7 @@ export const usePersonalizedRecommendations = () => {
     setError(null);
     
     try {
+      console.log('🚀 Getting recommendations for preferences:', preferences);
       let results: Product[] = [];
       
       if (preferences.celebrity) {
@@ -30,6 +31,36 @@ export const usePersonalizedRecommendations = () => {
           top_k: 10
         });
         results = celebrityResult?.products || [];
+      } else if (preferences.occasion) {
+        // Search by occasion (new priority)
+        results = api.searchByOccasion(preferences.occasion, {
+          min_price: preferences.budget?.min,
+          max_price: preferences.budget?.max,
+          category: preferences.category,
+          top_k: 10
+        });
+        
+        // If no results from occasion search, try vibe search
+        if (results.length === 0 && preferences.vibe) {
+          results = api.searchByVibe(preferences.vibe, {
+            min_price: preferences.budget?.min,
+            max_price: preferences.budget?.max,
+            category: preferences.category,
+            top_k: 10
+          });
+        }
+        
+        // If still no results, try general search
+        if (results.length === 0) {
+          const query = preferences.category || preferences.vibe || 'jewelry';
+          results = api.search(query, {
+            min_price: preferences.budget?.min,
+            max_price: preferences.budget?.max,
+            category: preferences.category,
+            vibe: preferences.vibe,
+            top_k: 10
+          });
+        }
       } else if (preferences.vibe) {
         // Search by vibe
         results = api.searchByVibe(preferences.vibe, {
@@ -39,8 +70,8 @@ export const usePersonalizedRecommendations = () => {
           top_k: 10
         });
       } else {
-        // General search based on occasion and other preferences
-        const query = preferences.occasion || preferences.category || 'jewelry';
+        // General search based on category
+        const query = preferences.category || 'jewelry';
         results = api.search(query, {
           min_price: preferences.budget?.min,
           max_price: preferences.budget?.max,
@@ -50,6 +81,7 @@ export const usePersonalizedRecommendations = () => {
         });
       }
       
+      console.log(`🎯 Final recommendation results: ${results.length} products`);
       setData(results);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to get recommendations');

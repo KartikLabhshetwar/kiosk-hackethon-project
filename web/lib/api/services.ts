@@ -3,6 +3,7 @@ import { Product, Celebrity, SearchRequest, CelebrityRequest, VibeRequest, VibeS
 import { products, loadProducts } from '../data/products';
 import { celebrities, getCelebrityByName } from '../data/celebrities';
 import { getAllVibes, classifyVibe, getPrimaryVibe } from '../data/vibes';
+import { loadOccasionData, getOccasionById, getOccasionRecommendations } from '../data/occasions';
 
 // Utility function to format price
 export const formatPrice = (price: number): string => {
@@ -134,6 +135,128 @@ const searchByVibe = (vibe: string, filters: {
   return results.slice(0, filters.top_k || 5);
 };
 
+// Search by occasion
+const searchByOccasion = (occasionId: string, filters: {
+  min_price?: number;
+  max_price?: number;
+  category?: string;
+  top_k?: number;
+} = {}): Product[] => {
+  console.log(`🔍 Searching by occasion: ${occasionId}`, filters);
+  const occasion = getOccasionById(occasionId);
+  if (!occasion) {
+    console.warn(`Occasion ${occasionId} not found, falling back to keyword search`);
+    return searchProducts(occasionId, filters);
+  }
+  
+  console.log(`📋 Found occasion data:`, occasion);
+
+  const results: Product[] = [];
+  
+  // First, try to get recommended products for this occasion
+  const recommendedProductIds = occasion.recommended_products.map(rec => rec.id);
+  console.log(`🎯 Recommended product IDs:`, recommendedProductIds);
+  
+  const recommendedProducts = products.filter(product => 
+    recommendedProductIds.includes(product.id)
+  );
+  console.log(`📦 Found ${recommendedProducts.length} recommended products:`, recommendedProducts.map(p => ({ id: p.id, name: p.product_name, price: p.price, category: p.category })));
+  
+  // Add recommended products first
+  for (const product of recommendedProducts) {
+    // Apply filters
+    if (filters.min_price && product.price && product.price < filters.min_price) {
+      console.log(`❌ Product ${product.id} filtered out: price ${product.price} < min ${filters.min_price}`);
+      continue;
+    }
+    if (filters.max_price && product.price && product.price > filters.max_price) {
+      console.log(`❌ Product ${product.id} filtered out: price ${product.price} > max ${filters.max_price}`);
+      continue;
+    }
+    if (filters.category && product.category && !product.category.toLowerCase().includes(filters.category.toLowerCase())) {
+      console.log(`❌ Product ${product.id} filtered out: category ${product.category} doesn't match ${filters.category}`);
+      continue;
+    }
+    
+    console.log(`✅ Product ${product.id} passed filters:`, { name: product.product_name, price: product.price, category: product.category });
+    results.push(product);
+  }
+  
+  // If we don't have enough results, search by occasion keywords
+  if (results.length < (filters.top_k || 5)) {
+    const keywordResults = searchProducts(occasion.keywords.join(' '), {
+      ...filters,
+      top_k: (filters.top_k || 5) - results.length
+    });
+    
+    // Add keyword results that aren't already in recommended products
+    for (const product of keywordResults) {
+      if (!results.find(r => r.id === product.id)) {
+        results.push(product);
+      }
+    }
+  }
+  
+  // If still no results, try broader search with occasion categories and vibes
+  if (results.length === 0) {
+    console.log(`No results found for occasion ${occasionId}, trying broader search`);
+    
+    // Search by occasion categories
+    for (const category of occasion.categories) {
+      if (filters.category && !category.toLowerCase().includes(filters.category.toLowerCase())) {
+        continue;
+      }
+      
+      const categoryResults = products.filter(product => {
+        // Check category match
+        if (!product.category || !product.category.toLowerCase().includes(category.toLowerCase())) {
+          return false;
+        }
+        
+        // Apply price filters
+        if (filters.min_price && product.price && product.price < filters.min_price) return false;
+        if (filters.max_price && product.price && product.price > filters.max_price) return false;
+        
+        return true;
+      });
+      
+      results.push(...categoryResults);
+    }
+    
+    // If still no results, try vibe-based search
+    if (results.length === 0) {
+      for (const vibe of occasion.vibes) {
+        const vibeResults = products.filter(product => {
+          // Check vibe match
+          const hasVibe = product.vibes && product.vibes.some(v => v.toLowerCase().includes(vibe.toLowerCase()));
+          if (!hasVibe) return false;
+          
+          // Apply category filter if specified
+          if (filters.category && product.category && !product.category.toLowerCase().includes(filters.category.toLowerCase())) {
+            return false;
+          }
+          
+          // Apply price filters
+          if (filters.min_price && product.price && product.price < filters.min_price) return false;
+          if (filters.max_price && product.price && product.price > filters.max_price) return false;
+          
+          return true;
+        });
+        
+        results.push(...vibeResults);
+      }
+    }
+  }
+  
+  // Remove duplicates and limit results
+  const uniqueResults = results.filter((product, index, self) => 
+    index === self.findIndex(p => p.id === product.id)
+  );
+  
+  console.log(`🎉 Final results: ${uniqueResults.length} products`);
+  return uniqueResults.slice(0, filters.top_k || 5);
+};
+
 // Get categories
 const getCategories = (): string[] => {
   const categories = new Set<string>();
@@ -229,6 +352,7 @@ const getProductById = (id: number): Product | null => {
 // Initialize data
 export const initializeData = async (): Promise<void> => {
   await loadProducts();
+  await loadOccasionData();
   
   // Classify vibes for products that don't have them
   products.forEach(product => {
@@ -244,6 +368,7 @@ export const api = {
   search: searchProducts,
   searchByCelebrity,
   searchByVibe,
+  searchByOccasion,
   getCategories,
   getCollections,
   getVibes: getAllVibes,

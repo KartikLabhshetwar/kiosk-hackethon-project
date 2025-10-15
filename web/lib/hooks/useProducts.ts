@@ -13,6 +13,7 @@ import {
   searchByVibe,
   getProductById,
   getSearchSuggestions,
+  api,
 } from '../api/services';
 import {
   Product,
@@ -119,10 +120,20 @@ export function usePersonalizedRecommendations() {
 
   const getRecommendations = useCallback(
     async (params: RecommendationParams) => {
+      // Use occasion-based search if occasion is provided
+      if (params.occasion) {
+        const results = api.searchByOccasion(params.occasion, {
+          min_price: params.budget?.min,
+          max_price: params.budget?.max,
+          category: params.category,
+          top_k: 6,
+        });
+        return results;
+      }
+
       // Build search query from preferences
       const queryParts: string[] = [];
 
-      if (params.occasion) queryParts.push(params.occasion);
       if (params.vibe) queryParts.push(params.vibe);
       if (params.category) queryParts.push(params.category);
 

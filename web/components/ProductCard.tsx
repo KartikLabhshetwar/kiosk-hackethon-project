@@ -30,8 +30,14 @@ export default function ProductCard({ product, onTryOn }: ProductCardProps) {
   };
 
   const handleBuyNow = () => {
-    addItem(product);
-    router.push('/cart');
+    if (product.product_url) {
+      // Open product URL in new tab
+      window.open(product.product_url, '_blank');
+    } else {
+      // Fallback: add to cart and go to cart page
+      addItem(product);
+      router.push('/cart');
+    }
   };
 
   const handleTryOn = () => {
@@ -129,24 +135,34 @@ export default function ProductCard({ product, onTryOn }: ProductCardProps) {
         </button>
 
         {/* Action Buttons */}
-        <div className="flex gap-3">
-          <button
-            onClick={handleBuyNow}
-            className="flex-1 text-lg bg-[#BA9456] hover:bg-amber-700 text-white py-2 rounded-lg transition-colors font-medium"
-          >
-            Buy now
-          </button>
-          <button
-            onClick={handleAddToCart}
-            disabled={isInCart(product.id)}
-            className={`flex-1 text-lg py-2 rounded-lg transition-colors font-medium ${
-              isInCart(product.id)
-                ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
-                : 'bg-[#BA9456] hover:bg-amber-600 text-white'
-            }`}
-          >
-            {isInCart(product.id) ? 'In Cart' : 'Add to cart'}
-          </button>
+        <div className="flex flex-col gap-3">
+          {product.product_url && (
+            <button
+              onClick={() => window.open(product.product_url, '_blank')}
+              className="w-full text-lg bg-[#BA9456] hover:bg-amber-700 text-white py-2 rounded-lg transition-colors font-medium"
+            >
+              View Product
+            </button>
+          )}
+          <div className="flex gap-3">
+            <button
+              onClick={handleBuyNow}
+              className="flex-1 text-lg bg-[#BA9456] hover:bg-amber-700 text-white py-2 rounded-lg transition-colors font-medium"
+            >
+              Buy now
+            </button>
+            <button
+              onClick={handleAddToCart}
+              disabled={isInCart(product.id)}
+              className={`flex-1 text-lg py-2 rounded-lg transition-colors font-medium ${
+                isInCart(product.id)
+                  ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
+                  : 'bg-[#BA9456] hover:bg-amber-600 text-white'
+              }`}
+            >
+              {isInCart(product.id) ? 'In Cart' : 'Add to cart'}
+            </button>
+          </div>
         </div>
       </div>
     </div>
