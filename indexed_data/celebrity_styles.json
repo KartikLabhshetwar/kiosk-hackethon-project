@@ -1,0 +1,66 @@
+{
+  "deepika padukone": {
+    "vibes": ["elegant", "royal", "traditional", "sophisticated"],
+    "occasions": ["wedding", "red carpet", "festive", "formal"],
+    "keywords": ["gold", "statement", "necklace", "jewelry", "heritage", "maharani"],
+    "price_range": { "min": 100000, "max": 1000000 },
+    "preferred_categories": ["necklace", "earrings", "bracelet"],
+    "style_description": "Royal elegance with traditional Indian influences"
+  },
+  "priyanka chopra": {
+    "vibes": ["modern", "bold", "glamorous", "contemporary"],
+    "occasions": ["party", "red carpet", "awards", "fashion event"],
+    "keywords": ["diamond", "contemporary", "earrings", "statement", "bold"],
+    "price_range": { "min": 50000, "max": 500000 },
+    "preferred_categories": ["earrings", "ring", "bracelet"],
+    "style_description": "Bold and glamorous with modern edge"
+  },
+  "alia bhatt": {
+    "vibes": ["cute", "playful", "youthful", "trendy"],
+    "occasions": ["casual", "party", "date", "festival"],
+    "keywords": ["silver", "delicate", "earrings", "minimalist", "cute"],
+    "price_range": { "min": 10000, "max": 100000 },
+    "preferred_categories": ["earrings", "ring", "pendant"],
+    "style_description": "Cute and playful with youthful charm"
+  },
+  "kareena kapoor": {
+    "vibes": ["glamorous", "bold", "statement", "luxurious"],
+    "occasions": ["party", "wedding", "red carpet", "awards"],
+    "keywords": ["diamond", "gold", "statement", "bold", "luxury"],
+    "price_range": { "min": 200000, "max": 2000000 },
+    "preferred_categories": ["necklace", "earrings", "bracelet"],
+    "style_description": "Glamorous and bold with luxurious appeal"
+  },
+  "katrina kaif": {
+    "vibes": ["elegant", "sophisticated", "classic", "timeless"],
+    "occasions": ["wedding", "formal", "red carpet", "awards"],
+    "keywords": ["pearl", "diamond", "classic", "elegant", "sophisticated"],
+    "price_range": { "min": 150000, "max": 1500000 },
+    "preferred_categories": ["necklace", "earrings", "ring"],
+    "style_description": "Elegant and sophisticated with timeless appeal"
+  },
+  "anushka sharma": {
+    "vibes": ["minimalist", "modern", "clean", "sophisticated"],
+    "occasions": ["casual", "formal", "wedding", "party"],
+    "keywords": ["silver", "minimalist", "clean", "modern", "simple"],
+    "price_range": { "min": 25000, "max": 250000 },
+    "preferred_categories": ["earrings", "ring", "bracelet"],
+    "style_description": "Minimalist and modern with clean aesthetics"
+  },
+  "kangana ranaut": {
+    "vibes": ["bold", "unique", "artistic", "statement"],
+    "occasions": ["party", "awards", "fashion event", "red carpet"],
+    "keywords": ["unique", "artistic", "statement", "bold", "creative"],
+    "price_range": { "min": 100000, "max": 1000000 },
+    "preferred_categories": ["necklace", "earrings", "bracelet"],
+    "style_description": "Bold and unique with artistic flair"
+  },
+  "sonam kapoor": {
+    "vibes": ["fashion-forward", "trendy", "stylish", "contemporary"],
+    "occasions": ["fashion event", "party", "red carpet", "awards"],
+    "keywords": ["fashion", "trendy", "stylish", "contemporary", "designer"],
+    "price_range": { "min": 75000, "max": 750000 },
+    "preferred_categories": ["earrings", "necklace", "bracelet"],
+    "style_description": "Fashion-forward and trendy with contemporary style"
+  }
+}

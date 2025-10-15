@@ -89,9 +89,9 @@ const initializeServices = async (): Promise<void> => {
   try {
     console.log('🚀 Initializing services...');
     
-    // Initialize services
-    celebrityService = new CelebrityService();
-    vibeService = new VibeService();
+    // Initialize services with data file paths
+    celebrityService = new CelebrityService(config.files.celebrityData);
+    vibeService = new VibeService(config.files.vibeConfig);
     recommenderService = new RecommenderService(
       config.files.metadata.replace('/metadata.json', ''),
       celebrityService,
