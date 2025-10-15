@@ -15,7 +15,7 @@ const HOST = process.env['HOST'] || '0.0.0.0';
 
 // CORS origins - allow all in development, specific origins in production
 const CORS_ORIGINS = NODE_ENV === 'production' 
-  ? (process.env['CORS_ORIGINS'] || 'http://localhost:3000').split(',')
+  ? (process.env['CORS_ORIGINS'] || 'http://localhost:3000,https://kiosk-hackethon-project.vercel.app').split(',')
   : ['*'];
 
 // Data paths - relative to project root
