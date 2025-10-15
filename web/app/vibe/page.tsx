@@ -101,11 +101,11 @@ export default function EvolStudioLanding() {
                           vintage: "/vibe/vintage.png",
                         };
                         return (
-                          <div key={vibe.id} onClick={() => handleVibeSelect(vibe.id)}>
+                          <div key={vibe.value} onClick={() => handleVibeSelect(vibe.value)}>
                             <Card 
-                              image={imageMap[vibe.id] || "/vibe/traditional.png"} 
-                              title={vibe.name} 
-                              alt={vibe.name} 
+                              image={imageMap[vibe.value] || "/vibe/traditional.png"} 
+                              title={vibe.label} 
+                              alt={vibe.label} 
                             />
                           </div>
                         );
@@ -122,11 +122,11 @@ export default function EvolStudioLanding() {
                           vintage: "/vibe/vintage.png",
                         };
                         return (
-                          <div key={vibe.id} onClick={() => handleVibeSelect(vibe.id)}>
+                          <div key={vibe.value} onClick={() => handleVibeSelect(vibe.value)}>
                             <Card 
-                              image={imageMap[vibe.id] || "/vibe/traditional.png"} 
-                              title={vibe.name} 
-                              alt={vibe.name} 
+                              image={imageMap[vibe.value] || "/vibe/traditional.png"} 
+                              title={vibe.label} 
+                              alt={vibe.label} 
                             />
                           </div>
                         );
@@ -144,7 +144,7 @@ export default function EvolStudioLanding() {
                 </button>
                 <div className="text-lg border-2 bg-white border-[#BA9456] px-12 py-3 rounded-3xl">
                   Step <span className="font-semibold">3</span> of{" "}
-                  <span className="font-semibold">6</span>
+                  <span className="font-semibold">5</span>
                 </div>
                  <button onClick={()=>router.push("/type")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
                   Next

@@ -19,7 +19,11 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, onTryOn }: ProductCardProps) {
   const router = useRouter();
-  const { addItem, isInCart } = useCart();
+  const { addItem, items } = useCart();
+  
+  const isInCart = (productId: number) => {
+    return items.some(item => item.id === productId);
+  };
 
   const handleAddToCart = () => {
     addItem(product);

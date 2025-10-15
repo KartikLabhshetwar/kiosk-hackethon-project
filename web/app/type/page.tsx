@@ -154,7 +154,7 @@ export default function EvolStudioLanding() {
                 </button>
                 <div className="text-lg border-2 bg-white border-[#BA9456] px-12 py-3 rounded-3xl">
                   Step <span className="font-semibold">4</span> of{" "}
-                  <span className="font-semibold">6</span>
+                  <span className="font-semibold">5</span>
                 </div>
                 <button 
                   onClick={handleNext}

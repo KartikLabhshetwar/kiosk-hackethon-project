@@ -99,7 +99,7 @@ export default function EvolStudioLanding() {
                 </button>
                 <div className="text-lg border-2 bg-white border-[#BA9456] px-12 py-3 rounded-3xl">
                   Step <span className="font-semibold">2</span> of{" "}
-                  <span className="font-semibold">6</span>
+                  <span className="font-semibold">3</span>
                 </div>
                  <button onClick={()=>router.push("/celeb-jewel-type")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
                   Next

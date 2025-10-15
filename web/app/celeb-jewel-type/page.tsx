@@ -87,7 +87,6 @@ export default function EvolStudioLanding() {
                    
                 </div>
             </div>
-s
 
               {/* Navigation Buttons */}
               <div className="flex items-center justify-center gap-50">
@@ -95,8 +94,8 @@ s
                   Back
                 </button>
                 <div className="text-lg border-2 bg-white border-[#BA9456] px-12 py-3 rounded-3xl">
-                  Step <span className="font-semibold">4</span> of{" "}
-                  <span className="font-semibold">6</span>
+                  Step <span className="font-semibold">3</span> of{" "}
+                  <span className="font-semibold">3</span>
                 </div>
                  <button onClick={()=>router.push("/suggestions")} className="px-12 py-2 text-xl font-semibold bg-white border-2 border-[#BA9456] text-[#BA9456] rounded-full hover:scale-105 transition-transform duration-500 ">
                   Next
