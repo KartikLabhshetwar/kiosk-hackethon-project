@@ -145,7 +145,3 @@ secrets.json
 # Backup files
 *.bak
 *.backup
-
-node_modules
-.env
-./dist
