@@ -4,7 +4,7 @@
  */
 
 export const API_CONFIG = {
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'https://kiosk-hackethon-project.onrender.com',
   timeout: parseInt(process.env.NEXT_PUBLIC_API_TIMEOUT || '30000', 10),
   headers: {
     'Content-Type': 'application/json',
